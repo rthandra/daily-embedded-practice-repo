@@ -1,0 +1,42 @@
+#include <stdio.h>
+/*Given an array of size n, the task is to check if it is sorted in ascending order or not. 
+Equal values are allowed in an array and two consecutive equal values are considered sorted.
+
+Examples: 
+
+Input: arr[] = [20, 21, 45, 89, 89, 90]
+Output: Yes
+
+Input: arr[] = [20, 20, 45, 89, 89, 90]
+Output: Yes
+
+Input: arr[] = [20, 20, 78, 98, 99, 97]
+Output: No*/
+
+/* have a loop that checks the current index and the index after, while the condition is true,
+return yes. else return false */
+
+void sort(int arr[], int size){
+    
+    for(int i=0; i<size-1; i++){
+        if(arr[i] > arr[i+1]){
+            
+        /*    printf("true");
+        }
+        else{
+            printf("false");
+        } this is unecessary because it checks for every value, we don't want it to return every time*/
+            printf("false");
+            return; /* exit the program when its false, cause dont want it to print falsetrue*/
+        }
+    } 
+    printf("true"); 
+    
+}
+
+int main()
+{
+    int arr[5]={1,2,3,4,5};
+    sort(arr,5);
+    return 0;
+}
