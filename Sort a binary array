@@ -1,0 +1,52 @@
+/*Sort a Binary Array
+Given an array of 0s and 1s in random order. Segregate 0s on left side and 1s on
+right side of the array.
+
+Examples: 
+
+
+Input :  arr[] = [0, 1, 0, 1, 0, 0, 1, 1, 1, 0] 
+Output : arr[] = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1] 
+
+
+Input :  arr[] = [1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1] 
+Output : arr[] = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1] 
+
+
+Please refer Segregate 0s and 1s in an array for detailed solution.
+
+Move all zeros to end of array
+Given an array of integers arr[], the task is to move all the zeros to the end of 
+the array while maintaining the relative order of all non-zero elements*/
+//intially, I tried using a simple sort function but that does not sucessfully push the o's to right
+//using binary search approach
+#include <stdio.h> 
+
+int sort(int arr[], int size){
+    int left = 0;
+    int right = size-1;
+    
+    while (left<right){
+        if(arr[left] == 0){
+            left++;
+        }
+        else{
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            right--;
+        }
+    }
+}
+
+int main(){
+    int arr[5] = {0,1,1,0,1};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    sort(arr,size);
+    
+    //printing the array
+    for(int i = 0;i<size;i++){ //we print the entire size of the array not accessing just one element which would be size-1
+        printf("%d",arr[i]);
+    }
+    return 0;
+}
