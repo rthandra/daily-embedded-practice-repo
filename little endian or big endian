@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+//endianess refers to the byte order in the computer
+//little endian - least significant byte is stored first/lower memory
+//big endian - highest significant byte is stored first/lower memory
+
+int main() {
+    int num = 0x11223344; // 0001 0001 0010 0010 0011 0011 0100 0100 
+    char *byte = (char*)&num; //dereferences into one byte since char = one byte but int = 4
+
+    if(*byte == 0x44 ) {
+        printf("little endian");
+    }
+    else if(*byte == 0x11){
+        printf("big endian");
+    }
+    return 0;
