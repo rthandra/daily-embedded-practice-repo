@@ -1,0 +1,14 @@
+//reverse the endianess: 0x11223344--> 0x44332211
+
+int main(){
+    int num = 0x11223344;
+    int reversed = 0;
+    
+    reversed = reversed | ((0xff & num) << 24);
+    reversed = reversed | (((0xff << 8) & num) << 8);
+    reversed = reversed | (((0xff << 16) & num ) >> 8 );
+    reversed = reversed | (((0xff << 24) & num ) >> 24);
+    printf("reversed =  0x%x", reversed );//coverts into hex value
+    
+}
+
