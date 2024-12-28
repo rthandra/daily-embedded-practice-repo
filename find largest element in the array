@@ -1,0 +1,31 @@
+/*Given an array arr[]. The task is to find the largest element in the given array. 
+
+Examples: 
+
+Input: arr[] = [10, 20, 4]
+Output: 20
+Explanation: Among 10, 20 and 4, 20 is the largest. 
+
+
+Input: arr[] = [20, 10, 20, 4, 100]
+Output: 100 */
+
+void findLargest(int arr[], int size ){
+    int largest = 0;
+    
+    for(int i = 0; i < size; i++){
+        if(arr[i] > largest){ //checking arr[i] with arr[i+1] gives out of bounds error
+            largest = arr[i];
+        }
+    }
+    printf("largest = %d", largest);
+}
+
+int main()
+{
+    int arr[] = {900, 90, 0, 980};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    findLargest(arr, size);
+
+    return 0;
+}
