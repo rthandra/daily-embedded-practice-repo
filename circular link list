@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+//circular linked list
+
+//structure of a Node
+struct Node{
+    int data;
+    struct Node* next;
+};
+
+//creating a function to create a new Node
+
+struct Node* createNode(int value){ //creating an instance function so that we don't have to call every single time
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+    
+    return newNode; //returns the new node
+}
+
+//creating a function to create a new circular linked list
+
+struct Node* circularLinkedList(int arr[], int size){
+    struct Node* head = createNode(10);
+    struct Node* temp = head;
+    
+    //creating the circular list
+    for(int i = 1; i < size ; i++){  //node creation from pos 1
+        temp->next = createNode(arr[i]);
+        temp = temp->next;
+        
+    }
+     //circular
+    temp->next = head;
+    return head;    
+        
+}
+
+
+int main()
+{
+    int arr[] = {1,2,3,4,5};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    circularLinkedList(arr, size);
+
+    return 0;
+}
