@@ -1,0 +1,20 @@
+//UpperCase to Lower using Bit manipulation
+
+#include <stdio.h>
+
+// A in binary = 01000001, hex = 0x41
+// a in binary = 01100001, hex = 0x61
+
+int convertUpperCase(int value){
+    
+    value = value | (1 << 5); //~if wanted to convert lower to upper
+    
+    printf("value = %d\n", value);
+    
+}
+
+int main(){
+    
+    convertUpperCase(0x41);
+    return 0;
+}
