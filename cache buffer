@@ -1,0 +1,40 @@
+Reads data from a file and stores it in an array through buffer
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_DATA_ARRAY_SIZE 1000 //max size for the main array
+
+//function to copy the data from the buffer to the main array
+
+void copyData(char* buffer, char* main_array){
+    
+    int i = 0; //used for iterating the buffer
+    int index = 0; //used for iterating the main array
+    
+    while(index < MAX_DATA_ARRAY_SIZE){
+        main_array[index] = buffer[i];
+        index++;
+        i++;
+    }
+}
+int main(){
+    //opening the file
+    FILE *fptr = fopen("file.txt", "r"); //"r" - read only mode
+    if(fptr == NULL ){ //file is empty
+        return 1;
+    }
+    
+    char main_array[MAX_DATA_ARRAY_SIZE];
+    char buffer[500];
+    
+    //fgets function
+    while(fgets(buffer, sizeof(buffer, fptr))){ //read data stored, size, pointer to file which reads data
+        copyData(buffer, main_array);
+    }
+    fclose(fptr);
+    printf("main_array_data = %s\n", main_array);
+    
+    return 0;
+}
