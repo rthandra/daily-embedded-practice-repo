@@ -1,0 +1,29 @@
+This code is written to initialize and use the ADC (Analog-to-Digital Converter) peripheral on an STM32 microcontroller.
+
+
+void adc_init() {
+    RCC->APB2ENR |= (1 << 8);  // Enable ADC1 clock
+    ADC1->CR2 |= (1 << 0);     // Turn on ADC
+}
+
+uint16_t adc_read(uint8_t channel) {
+    set_GPIO_mode('A', 0, 3);  // Set GPIO pin as analog input
+    ADC1->SQR3 |= channel;     // Select ADC channel
+    ADC1->CR2 |= (1 << 30);    // Start conversion
+    while (!(ADC1->SR & (1 << 1))); // Wait for conversion to finish
+    return ADC1->DR;           // Return conversion result
+}
+
+int main(void) {
+    uint32_t temp;
+    volatile int count;
+
+    adc_init();                // Initialize ADC
+    while (1) {
+        temp = adc_read(0);    // Read ADC channel 0
+        count++;               // Increment count (for debugging)
+    }
+    temp = adc_read(16);       // Read ADC channel 16 (e.g., temperature sensor)
+}
+
+
