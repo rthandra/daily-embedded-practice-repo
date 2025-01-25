@@ -1,0 +1,48 @@
+Given two strings s and t, return true if the two strings are anagrams of each other, otherwise return false.
+
+An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+
+SOLUTION IN C: USING ARRAY buffer
+
+bool isAnagram(char* s, char* t) {
+    //check if they are the same length
+    //add the first string and the no.of counts in the hashmap
+    //subract the count in the same array with the second string
+    //if the count goes below 0 its not the same. return false
+   //count array/hashmap
+    int count[256] = {0};
+    if (strlen(s) != strlen(t)){
+        return false;
+    }   
+    for(int i = 0; s[i] != '\0'; i++){
+        count[s[i]]++;
+    }
+    for (int i = 0; s[i] != '\0'; i++) {
+        count[t[i]]--;
+        if (count[t[i]]<0){
+            return false;
+        }
+    }
+    return true;
+} 
+//[a:0, b:0, c:1..] ->s t = a,b,c, s = a,b,a
+
+SOLUTION IN C++
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        //sort
+    //if the strings are equal or not, if not then false
+        if(s.length() != t.length()){
+        return false;
+        }
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+        if(s == t){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
