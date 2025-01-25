@@ -1,0 +1,37 @@
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+Example 1:
+
+Input: nums = [1,2,3,1]
+
+Output: true
+
+Solution in C:
+bool containsDuplicate(int* nums, int numsSize) {
+
+        for(int i = 0; i < numsSize ; i++){
+        for(int compare = i+1; compare < numsSize; compare++){ //i+1 as i moves fw and we don't want to start from 1 again
+            if(nums[i] == nums[compare]){
+                return true;
+            }
+        }
+    }  
+    return false;
+   
+}
+
+Solution in C++:
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+
+        for(int i = 0; i < nums.size() ; i++){
+            for(int compare = i+1; compare < nums.size(); compare++){ //i+1 as i moves fw and we don't want to start from 1 again
+                if(nums[i] == nums[compare]){
+                    return true;
+                }
+            }
+        }  
+        return false;
+    }
+};
