@@ -1,0 +1,64 @@
+Given an array of strings strs, group the 
+anagrams
+ together. You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+Explanation:
+
+There is no string in strs that can be rearranged to form "bat".
+The strings "nat" and "tan" are anagrams as they can be rearranged to form each other.
+The strings "ate", "eat", and "tea" are anagrams as they can be rearranged to form each other.
+Example 2:
+
+Input: strs = [""]
+
+Output: [[""]]
+
+Example 3:
+
+Input: strs = ["a"]
+
+Output: [["a"]]
+
+SOLUTION IN C++
+
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+ //vector<vector<string>> in C++ is like a dynamic 2D array of strings in C (which would need memory management).
+//vector<string>& is a reference to a vector of strings, meaning the function will modify the original input.
+// ["act","pots","tops","cat","stop","hat"]
+// sort each word in array
+// ["act","pots","tops","cat","stop","hat"]
+// {act: ca}
+// converting hashmaps to sub-arrays
+        vector<vector<string>>result; //vector of vector to strings; similer to pointer in c
+//vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+//string s = strs[0];  // s will be "eat" ; string holds many chars
+        unordered_map < string, vector<string>>map; //creating an empty hashmap
+ 
+    //STEP2: Create a duplicate inorder to have key value par
+        for(int i = 0; i<strs.size(); i++){
+            string s = strs[i]; //creating a duplicate string
+    //STEP 3: Sort the original string in order to create key for the values
+            sort(strs.begin(), strs.end());
+    //STEP 4: append values into hashmap
+            map[strs[i]].push_back(s); //for every similart sorted string, add its similar from duplicate string s
+        //EX: {{"aet"{eat, tea, ate}}}
+        }
+    //STEP 5: iterating through the hashmap and converting them into sublists
+        for(auto i = map.begin(); i !=map.end(); i++){
+            result.push_back(i->second);
+            return result;     
+            
+        } 
+        
+    }
+};
