@@ -1,0 +1,40 @@
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise
+ 
+
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+
+
+
+
+SOLUTION IN C:
+
+#include <ctype.h>
+#include <string.h>
+#include <stdbool.h>
+//convert uppercase to lower, should contain only alphabets - no :, -, ! etc
+bool isPalindrome(char* s) {
+    //step:1 two pointers: start of string, end of string
+    int start = 0; 
+    int end = strlen(s) - 1;
+
+    while (start < end) { //step2: while loop until they cross each other
+        while (start < end && !isalnum(s[start])) { //step 3: loop for skipping non-alph nos
+            start++; //EX: "!a....." skips "!" and points to a
+        }
+        while (start < end && !isalnum(s[end])) {
+            end--;
+        }
+        if (tolower(s[start]) != tolower(s[end])) { //step 4: checking if its the same
+            return false;
+        }
+        start++;
+        end--;
+    }
+    return true;
+}
