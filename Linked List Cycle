@@ -9,7 +9,7 @@ bool hasCycle(struct ListNode *head) {
     struct ListNode *fastPtr = head;
     struct ListNode *slowPtr = head;
 
-    while(fastPtr != NULL && fastPtr->next != NULL){ //make sure that fastPtr has valurs and a circular list
+    while(fastPtr != NULL && fastPtr->next != NULL){ //make sure that fastPtr has value and a circular list
         slowPtr = slowPtr->next;
         fastPtr = fastPtr->next->next;
 
