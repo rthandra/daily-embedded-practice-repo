@@ -17,11 +17,15 @@ Input: nums = [0,0,1,1,1,2,2,3,3,4]
 Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
 Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
 It does not matter what you leave beyond the returned k (hence they are underscores).
+Use i + 1 when comparing with the next element (common in sorting algorithms, comparing adjacent elements).
+Use i - 1 when comparing with the previous element (useful for detecting changes, removing duplicates, or keeping track of a previous state).
 
 
 SOLUTION:
 
 //return arrray, removing duplicates without modifying the len
+// two pointers - one traverses the array, the other one gathers unique numbers and is returned
+// when there is unique number swap the value to the second pointer which is gathering the unique values
 //return k, which is the count of the elements that is not empty in the array
 //no extra space, inarray modification
 int removeDuplicates(int* nums, int numsSize) {
