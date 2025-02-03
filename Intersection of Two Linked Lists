@@ -1,0 +1,57 @@
+Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
+//refer pictures
+
+For example, the following two linked lists begin to intersect at node c1:
+
+
+The test cases are generated such that there are no cycles anywhere in the entire linked structure.
+
+Note that the linked lists must retain their original structure after the function returns.
+
+Custom Judge:
+
+The inputs to the judge are given as follows (your program is not given these inputs):
+
+intersectVal - The value of the node where the intersection occurs. This is 0 if there is no intersected node.
+listA - The first linked list.
+listB - The second linked list.
+skipA - The number of nodes to skip ahead in listA (starting from the head) to get to the intersected node.
+skipB - The number of nodes to skip ahead in listB (starting from the head) to get to the intersected node.
+The judge will then create the linked structure based on these inputs and pass the two heads, headA and headB to your program. If you correctly return the intersected node, then your solution will be accepted.
+
+SOLUTION:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+ //Q is confusing, check for same memory address not values
+ // the list may vary so the goal is make both to be equal length
+ // if the first list reaches, it switched to next list that way both point at the same length
+ //ex: a = 1->2->3, b = 1->2->4->3, intersection is 3 but the list b is longer so when a reaches null and be reaches null, both both at 2 and then at 3 they are equal
+struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) {
+    //pointers point to memory address
+    struct ListNode * a = headA;
+    struct ListNode * b = headB;
+
+    while(a != b){ //if the memory address is not equal, if it is equal then they intersect
+        if(a == NULL){
+            a = headB;
+        }
+        else {
+            a = a->next;
+        }
+        
+        if(b == NULL){
+            b = headA;
+        }
+        else{
+            b = b->next;
+        }
+        
+    }
+
+    return a;
+} 
