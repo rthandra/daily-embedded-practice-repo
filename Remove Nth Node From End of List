@@ -1,0 +1,50 @@
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+ 
+
+Example 1:
+
+
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+Example 2:
+
+Input: head = [1], n = 1
+Output: []
+Example 3:
+
+Input: head = [1,2], n = 1
+Output: [1]
+
+SOLUTION
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+ //using the dummy node, the algorithm can always safely modify prev->next, regardless of whether the node being removed is at the head or elsewhere in the list.
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
+    //1. two pointer in n difference between each other
+    //2. how would you find the difference? subtract n  = 0; get the exact value of the difference
+    //3. now increment both the pointers until curr becomes null, prev would be at the exact place to be deleted
+    //the above logic is complicated, we can just run a for loop to calculate the n positions
+    struct ListNode *dummy =  (struct ListNode *)malloc(sizeof(struct ListNode ));
+    dummy->next = head;
+    int count = n;
+    struct ListNode *prev = dummy;
+    struct ListNode *curr = head;
+
+    for(int i = 0; i<n; i++){ //by the end of the loop curr will be at the exact position of n
+        curr = curr->next;
+    }
+
+    while(curr != NULL){
+        curr = curr->next;
+        prev = prev->next;  
+    }
+
+    prev->next= prev->next->next; //skip node
+    
+    return dummy->next;
+} 
