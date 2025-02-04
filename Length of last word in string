@@ -1,0 +1,26 @@
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal 
+substring
+ consisting of non-space characters only.
+
+
+SOL:
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int count = 0; //return the length of last word
+        int i = size(s)-1;
+        
+
+        while (s[i] == ' ') i--;
+
+        //if last index is not space, keep moving i
+        while(s[i] != ' '){
+                count++;
+                i--;
+        }
+        return count;
+    }
+};
