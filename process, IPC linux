@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <string.h>
+
+// Parent execution: parent waits for the child to finish executing after sleeping for two seconds
+// execl(): replaces child process with a different program, such as ls -l
+// fd[2]: array of file descriptors used to represent ends of pipe
+
+int main() {
+    int fd[2]; // fd[0] = read end, fd[1] = write end
+    char buffer[100];
+
+    if (pipe(fd) == -1) {
+        perror("pipe failed");
+        return 1;
+    }
+
+    pid_t pid = fork(); // create a new process
+
+    if (pid < 0) {
+        printf("process failed!\n");
+        return 1;
+    } else if (pid == 0) {
+        close(fd[1]); // In child process, write end of pipe is not needed, so it is closed
+        read(fd[0], buffer, sizeof(buffer)); // Child reads from read end fd[0], stores it into buffer
+        printf("Child received message: %s\n", buffer);
+        close(fd[0]); // Close read end, once finished reading
+
+        // printf("This is child process pid = %d\n", getpid()); // getpid() = process no
+        // execlp("ls", "ls", "-l", NULL); // Replace child process with ls -l
+        // printf("This line will not execute if execl() succeeds\n");
+        // printf("Child is sleeping...\n");
+    } else {
+        close(fd[0]); // Close read end, not needed
+        char msg[] = "Hello from parent";
+        write(fd[1], msg, strlen(msg) + 1); // Writes msg to fd[1], sends data to pipe (+1 for null terminator)
+        close(fd[1]);
+        wait(NULL);
+    }
+
+    return 0;
+}
