@@ -10,12 +10,12 @@ typedef struct{
 } LIFO_buf;
 
 typedef enum {
-    LB_NO_ERR = 0;
-    LB_FULL;
-    LB_NOT_FULL;
-    LB_EMPTY;
-    LB_NOT_EMPTY;
-    LB_NULL;
+    LB_NO_ERR = 0,
+    LB_FULL,
+    LB_NOT_FULL,
+    LB_EMPTY,
+    LB_NOT_EMPTY,
+    LB_NULL,
 }LB_Status;
 
 
