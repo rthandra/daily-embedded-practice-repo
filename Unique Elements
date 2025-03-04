@@ -1,0 +1,25 @@
+given a string s, return true if every character in the string is unique. return false if any characters are repeated.
+Example 1
+Input: s = "abcdef"
+Expected Output: True
+
+Example 2
+Input: s = "aabbcc"
+Output: False
+these are the examples, so its sorted
+
+Example 3
+Example Input: s = ""
+Expected Output: True
+
+SOLUTION: 
+
+bool isUnique(char *s) {
+    int len = strlen(s);  // Store string length to avoid redundant calculations
+    for (int i = 1; i < len; i++) {  
+        if (s[i] == s[i - 1]) {  // Compare with the previous character
+            return false;  // Found duplicate
+        }
+    }
+    return true;  // All characters are unique
+}
