@@ -1,0 +1,49 @@
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+Example 1:
+
+Input: s = "leetcode"
+
+Output: 0
+
+Explanation:
+
+The character 'l' at index 0 is the first character that does not occur at any other index.
+
+Example 2:
+
+Input: s = "loveleetcode"
+
+Output: 2
+
+Example 3:
+
+Input: s = "aabb"
+
+Output: -1
+
+SOLUTION in C++
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        unordered_map<char, int>count; //creating the hashmap
+
+    //loop through the string and update its count
+        for(int i = 0; i<s.length(); i++){ //C++ automatically intializes all key-values to 0
+            count[s[i]]++; //increments 0->1...
+        }
+    //reiterate through the hashmap and the first value with count 1 would have its index returned
+        for(int i = 0;i<s.length(); i++){
+            if(count[s[i]] == 1){ //frequency of the character
+                return i; //return index
+            }   
+        
+        }
+        return -1; //no unique characters found
+    }
+};
+//two pointer tech - not optimal
+//dictionary to maintaint the count of each character 
+//queue?
+
+
