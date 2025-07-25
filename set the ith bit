@@ -1,0 +1,6 @@
+    /*SET the ith bit*/
+    int a = 0b0101;
+    
+    a = (a | (1 << 1));
+    
+    printf("a = %d", a);
