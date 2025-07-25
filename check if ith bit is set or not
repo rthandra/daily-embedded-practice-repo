@@ -1,0 +1,8 @@
+    /*CHECK IF THE iTH BIT IS SET OR NOT*/
+    int a = 0b0101;
+    if ((a & (1 << 0)) !=0) {
+        printf("bit is set");
+    } 
+    else {
+        printf("bit is not set");
+    }
