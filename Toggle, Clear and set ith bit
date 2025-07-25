@@ -1,0 +1,19 @@
+    /*toggle the ith bit
+    int a = 0b0101;
+    
+    a = (a ^ (1 << 2));
+    printf("a = %d", a);*/
+    
+    /*clear the ith bit
+    
+    int a = 0b0101;
+    a = (a & ~(1 << 2)); //(0100) = ~(1011) & 0101 = 0001
+    printf("a = %d", a);*/
+    
+    /*SET the ith bit
+    int a = 0b0101;
+    
+    a = (a | (1 << 1));
+    
+    printf("a = %d", a);*/
+    
