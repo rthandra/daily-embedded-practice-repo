@@ -1,0 +1,11 @@
+    /*CHECK IF THE NUMBER IS A POWER OF 2 */
+    //every power of 2 has atleast 1 set bit
+    int a = 0b0001;
+    
+    if (( a & (a -1)) == 0){
+        printf("power of 2");
+    }
+    else{
+        printf("not power of 2");
+    }
+    
