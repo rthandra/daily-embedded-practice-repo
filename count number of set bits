@@ -1,0 +1,9 @@
+    /*COUNT THE NUMBER OF SET BITS*/
+    int a = 0b0111;
+    int count = 0;
+    
+    while(a!= 0){
+        a = a & a -1;
+        count ++;
+    }
+    printf("no of set bits = %d", count);
