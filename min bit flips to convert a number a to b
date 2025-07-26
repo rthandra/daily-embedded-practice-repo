@@ -1,0 +1,15 @@
+    /*MINIMUM BIT FLIPS TO CONVERT A NUMBER A to B */
+    int a = 0b1111;
+    int b = 0b0000;
+    int count = 0;
+    int var = 0;
+    
+    //XOR to check no: of bit flips required
+    var = a ^ b;
+    printf("var = %d\n", var);
+    //check for set bits = no of bits required
+    while ( var != 0){
+        var = var & var -1;
+        count++;
+    }
+    printf("count = %d", count);
