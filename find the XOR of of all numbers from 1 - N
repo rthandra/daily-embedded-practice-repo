@@ -1,0 +1,9 @@
+    /*XOR of given number, find the XOR of of all numbers from 1 - N*/
+    int n = 6;
+    int result = 0;
+
+    for(int i = 1; i < n + 1; i++){
+        result = i ^ result;
+    }
+    
+    printf("result = %d", result);
