@@ -1,0 +1,26 @@
+    /*FIND QUOTIENT OF THE NUMBER*/
+    /*EX: divisor = 22, dividend = 3, quotient = 7*/
+    
+    int divisor = 22;
+    int dividend = 3;
+    int sign = 1;
+    int quot = 0;
+    
+    //Determine Sign of the Result
+    if((dividend < 0) ^ (divisor < 0)){
+        sign = -1;
+    }
+    
+    //make both numbers positive
+    divisor = abs(divisor);
+    dividend = abs(dividend);
+    
+    //This loop is used to find how many times dividend fits into divisor at each bit level.
+    for(int i = 31; i >= 0; i--){
+        if(((long long)dividend << i) <= divisor)//{ Shift dividend left by i bits (i.e., multiply by 2^i)
+            divisor -= (dividend << i); //If the shifted dividend is less than or equal to the current divisor, it means we can subtract that much from divisor, This reduces the remaining value of the divisor.
+            quot |= (1<<i); //Set the i-th bit of quot to 1.
+        } 
+    }
+    
+    printf("result = %d", sign * quot);
