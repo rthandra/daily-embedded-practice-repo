@@ -1,0 +1,11 @@
+    /*SWAP ODD AND EVEN BITS*/
+    /* 1011 0101 -> 0111 1010 */
+    
+    int number = 0b10110101;
+    int result = 0;
+    //0b0001 0101 << 1 = 0b0010 1010
+    //0b1010 0000 >> 1 =  0b0101 0000
+                                                     
+    result = ((number & 0x55) << 1) | ((number & 0xAA) >> 1);
+    
+    printf("result = %d", result);
