@@ -1,0 +1,34 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+/*parity of a word
+ parity of a binary number is 1 if no of ones in the number are odd else 0
+ 
+ step 1: loop through, have a count and check the number of ones
+ step 2: check if count is odd or eve, if its odd then parity is int16_t
+*/
+
+int main (){
+    
+    int val = 0b10101101;
+    int count = 0;
+    
+    for(int i = 0; i < 8; i++){
+        if (val & 1){
+            count++;
+        }
+        val = (val >> 1);
+        
+    }
+    
+    if (count % 2 == 0){
+        printf("parity is 0");
+    }
+        
+    else {
+        printf("parity is 1");
+    }
+        
+    
+   return 0; 
+};
