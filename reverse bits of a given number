@@ -1,0 +1,27 @@
+#include <stdio.h>
+// 11110000 -> 00001111
+
+/* step 1: have a loop where you right shift the numbers until its 0
+   step 2: as you shift, OR the values into a new variable and left shift the new values*/
+   
+int main() 
+{
+    int val =0xF0;
+    int result = 0;
+    
+    if(val == 0){
+        return 0;
+    }
+    
+    for(int i = 0; i < 8; i++) {
+        
+        result = (result << 1);
+        result |= (val & 1);
+        printf("result = %d\n", result );
+        val = (val >> 1);
+        printf("val = %d\n", val);
+    }
+    
+    printf("final result %d\n", result);
+    return 0;
+}
