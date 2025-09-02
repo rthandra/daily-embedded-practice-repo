@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main()
+{
+    int a = 0b00001000;
+    int b = 0b00000001;
+    int result = 0;
+    
+    result = (a^b);
+    
+    printf("result = %d", result);
+
+    return 0;
+}
