@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <math.h>
+
+/*
+loop and return i while checking if the value is 1
+*/
+int main()
+{
+    int num = 0b11010000;
+    
+    int position = log2((num & ~(num - 1)) + 1);
+    
+    printf("position = %d", position);
+    
+    return 0;
+    
+    
+    /*for(int i = 0; i<8; i++){
+        
+        if (num & 1){
+            printf("position = %d\n", i);
+            break;
+        }
+        else{
+            num = (num >> 1);
+        }
+    }*/
+}
