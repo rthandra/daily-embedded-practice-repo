@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+/*
+
+step1: keep shifting until the right most bit reaches the left most side, increment position as it loops
+*/
+
+int main()
+{
+    
+    int n = 0b00101111;
+    int pos = 0;
+    
+    while(n>0){
+        n = n>>1;
+        pos++;
+    }
+    printf("position = %d", pos);
+
+    return 0;
+}
