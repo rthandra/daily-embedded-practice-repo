@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+//needs to set or clear the bit
+
+int modifyBit(int n, int p, int o){
+    
+    n = ((n & ~(1 << p)) | (o << p));
+    return n;
+}
+
+int main()
+{
+    int num, pos, operation;
+    
+    scanf("%d %d %d", &num, &pos, &operation);
+    int result = modifyBit(num, pos, operation);
+    
+    printf("modified bit = %d", result);
+    return 0;
+}
