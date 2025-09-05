@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdint.h>
+
+#define GPIO_REG (*(volatile uint32_t*) 0x40000000u)
+int main()
+{
+    GPIO_REG = 1;
+    GPIO_REG = 2;
+    
+    printf("GPIO_REG = %d\n", GPIO_REG);
+    
+    int val = GPIO_REG;
+    printf("val = %d", val);
+    
+    return 0;
+}
