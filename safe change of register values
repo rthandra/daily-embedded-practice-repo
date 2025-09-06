@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdint.h>
+
+#define REG (*(volatile uint32_t*) 0x40000000) //creates a memory mapped register at 0x40
+#define pos 4 //available bits
+#define MASK (0x7 << 4) //three bits wide 
+int main()
+{
+    int val = REG;
+    int mode;
+    
+    scanf(" %d ", &mode); //provide the no
+    
+    mode &= 0x7; //make it three bits wide
+    
+    val = (val & ~(MASK)) | (mode << pos); //clear it and add it to the bit field
+    
+    REG=val;
+
+    printf("Hello World");
+
+    return 0;
+}
