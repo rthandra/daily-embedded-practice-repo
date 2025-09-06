@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdint.h>
+
+//name = 10, flag = 1, id = 5
+
+uint16_t Pack(int name, int id, int flag){
+    
+    uint16_t packed = ((name & 0x3FF) <<6) | ((id & 0x1F) << 1)| ((flag & 0x1) << 0);
+    
+    printf("packed = %d\n", packed);
+    return packed;
+}
+
+void Unpack(uint16_t packed){
+    uint16_t name = ((packed >> 6) & 0x3FF);
+    uint16_t id = ((packed >> 1) & 0x1F);
+    uint16_t flag = ((packed >> 0) & 0x1);
+    
+    printf(" name = %d\n id = %d\n flag = %d\n", name, id, flag);
+}
+
+int main()
+{
+    uint16_t p = Pack(7, 3, 1);
+    Unpack(p);
+    return 0;
+}
