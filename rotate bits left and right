@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdint.h>
+/*
+    1110 0011 - rotate left by 3
+    0001 1111 - shift left and wrap it in the right
+    
+    shift left number n and shift right by pos so it wraps
+    
+*/
+
+/*
+shift right: 
+    1110 0011
+    0111 1100
+    n = n >> pos | n << (8-pos)
+*/
+uint8_t shiftRight(uint8_t n, int pos){
+    
+   return ((n >> pos) | (n << (8 - pos)));
+    
+}
+
+uint8_t shiftLeft(uint8_t n, int pos){
+    
+   return ((n << pos) | (n >> (8 - pos)));
+    
+}
+
+
+int main()
+{
+    uint8_t n = 19; // 0001 0011 -> 0110 0010 => 
+    int pos = 0; 
+    
+    scanf("%d", &pos);
+    
+    uint8_t left = shiftLeft(n, pos);
+    uint8_t right = shiftRight(n, pos);
+    
+    printf("left = %u, right = %u", left, right);
+    return 0;
+}
