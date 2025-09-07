@@ -1,0 +1,43 @@
+int decimalBinary(int decimal)
+{
+    int result = 0;
+    int base = 1;
+    
+    while (decimal > 0) {
+        int bit = decimal % 2;
+        result = result + (bit * base);
+        decimal /=2;
+        base *= 10;
+    }
+    return result;
+    
+}
+
+int binaryDecimal(int binary)
+{
+    int binaryResult = 0;
+    int base = 1;
+    
+    while(binary > 0 ){
+        
+    int lastBit = binary % 10; // gives you the last decimal digit
+    binaryResult += (lastBit*base);
+    binary /= 10;
+    base *= 2;
+    }
+    
+    return binaryResult;
+}
+
+int main()
+{
+    int decimal = 0;
+    int binary = 0;
+    
+    int result = decimalBinary(4);
+    int result1 = binaryDecimal(1100);
+    
+    printf("result = %d\n", result);
+    printf("result1 = %d", result1);
+    return 0;
+}
