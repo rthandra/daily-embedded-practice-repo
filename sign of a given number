@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdint.h>
+
+/*
+ 1 = 0000 0001
+ -1 = 1111 1111
+ 
+ 5 = 0000 0101
+ -5= 1111 1011
+ 
+ negative values always have the MSB set as 1
+ step 1: shift the bits by 8 and check if its 1?
+*/
+int main()
+{
+    
+    int8_t n = -1;
+
+    if ( (n >> 8) & 1 ){
+        printf("number is negative");
+    }
+    else{
+        printf("number is positive");
+    }
+
+
+    return 0;
+}
