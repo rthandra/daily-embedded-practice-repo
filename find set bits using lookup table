@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdint.h>
+
+void lookup(int *arr){
+    
+    arr [0] = 0; //intializing the table, building up
+    for(int i = 0; i < 256; i++){
+        arr[i] = (i&1) + arr[i >> 1];
+    }
+}
+
+int main()
+{   
+    int arr[256]; //8bits
+    uint32_t n = 0x12345678;
+    
+    lookup(arr);
+    int count = arr[n & 0xFF] +
+                arr[(n >> 8) & 0xFF] +
+                arr[(n >> 16) & 0XFF] + 
+                arr[(n >> 24) & 0xFF];
+    
+    printf("count = %d\n", count);
+
+    return 0;
+}
