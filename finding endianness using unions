@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdint.h>
+
+union endianess{
+    
+    int var;
+    uint8_t bytes[4]; // each index is one byte
+};
+
+int main()
+{
+   union endianess test;
+   test.var = 0x12345678;
+   
+   if(test.bytes[0] == 0x78){
+       printf("little endian");
+   }
+   
+   else if(test.bytes[0] == 0x12){
+       printf("big endian");
+   }
+
+    return 0;
+}
