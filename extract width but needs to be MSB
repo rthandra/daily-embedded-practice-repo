@@ -1,0 +1,24 @@
+/*
+The routine shall extract the bit field of length width  = "width" where the first bit position is given as below, save MSB 
+to the new variable
+*/
+#include <stdio.h>
+#include <stdint.h>
+
+
+int main()
+{
+    uint32_t bit_stream = 0x45be12ae;  
+    int start_pos = 15;            // starting bit (LSB = 0)
+    int width = 6;                 // number of bits to extract
+    uint32_t lsb = (start_pos - width ) + 1; // + 1 because it is 0 indexed
+    printf("lsb = %X\n", lsb);
+    
+    uint32_t mask =  ( 1 << width ) -1;// 011111 etc
+     printf("mask = %X\n", mask);
+     
+    uint32_t var = (bit_stream >> lsb) & mask;
+    printf("var = %X", var);
+    
+    return 0;
+}
