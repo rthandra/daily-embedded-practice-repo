@@ -1,0 +1,30 @@
+/*
+Set all bits between i and j in N equal to M:
+Let's say you have an integer N and another integer M. You also have two bit positions, i and j, where i≤j.
+The goal is to modify N so that all the bits between positions i and j (inclusive) are replaced by the bits of M.
+
+step1: clear bits in the position of m in n 
+step2: identity m and shift it to the postion of i
+*/
+
+
+#include <stdio.h>
+#include <stdint.h>
+
+int main()
+{
+    uint8_t n = 0b10000000;
+    int m = 10;
+    int i, j = 0;
+    
+    scanf("%d %d", &i, &j);
+    int left = ((~0) << (j+1)); //~0 inverts all the bits to left to 1 where as 1<<(j+1) flips only one bit
+    int right = (1 << i) - 1;
+    int mask = (left | right);
+    
+    n = (n & mask); //clear all the bits 
+    n = n | (m << i);
+    
+    printf("n = %x", n);
+    return 0;
+}
