@@ -1,0 +1,23 @@
+/*
+Determine if two integers are equal without using comparison and arithmetic operator
+0010, 0010 -> XOR
+*/
+
+#include <stdio.h>
+
+int main()
+{
+    int a = 0;
+    int b = 0;
+    
+    scanf("%d %d", &a, &b);
+    
+    if((a ^ b) == 0){
+        printf("numbers are equal");
+    }
+    else {
+        printf("not equal");
+    }
+    
+    return 0;
+}
