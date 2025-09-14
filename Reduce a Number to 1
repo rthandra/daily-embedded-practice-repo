@@ -1,0 +1,32 @@
+*
+Reduce a Number to 1 and count the number of steps it takes
+EX: 1100 -> 0001 
+1000-> 0001
+
+intial intuition - subract the number until it becomes 0, but takes longer time
+method 2: even if its even, divide the number by 2 as it reduces the number to half and if its odd, subtract the number by 1
+*/
+
+#include <stdio.h>
+
+int main()
+{
+    int n = 7;
+    int count = 0;
+    
+    while( n != 1){
+        
+        if(n%2 == 0){ //if no is event
+        n /= 2;
+    }
+    else{
+        n -= 1;
+    }
+    count++;
+    }
+    
+    printf("n = %d\n", n );
+    printf("count = %d", count);
+
+    return 0;
+}
