@@ -1,0 +1,45 @@
+array contains three duplicates and one unique number, find the unique number
+ EX: [1,1,1,3,2,2,2] - > ans = 3
+ 
+ intuition: two duplicates -> XOR works, for three: the no. of 1's in the column of the duplicaties is multiple of three
+ 
+ EX: 1 0001
+     1 0001
+     1 0001
+     3 0011
+  
+    ans = 3, to remove multiples of three mod them with 3 which will give 0 and the unique no gives 1
+
+*/
+#include <stdio.h>
+
+int main()
+{
+    
+    int arr[] = {1,1,1,3,2,2,2};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    int result = 0;
+    
+  //two nested for loops. one to check the position and the other to check count
+  
+    for(int bitpos = 0; bitpos < 32; bitpos++){
+        int count = 0;
+        
+        for(int i = 0; i < size; i++){
+            if (arr[i] & (1 << bitpos)){
+                count++;
+            }
+        }
+        
+        //after checking the first position from all the numbers in the array, check count % 3 = 0, if it is then duplicates in the array
+        
+        if (count % 3 != 0){
+            result = (result | (1 << bitpos)); //slowly forms the unique number
+        }
+    }
+    
+    printf("result = %X", result);
+    return 0;
+}
+
+
