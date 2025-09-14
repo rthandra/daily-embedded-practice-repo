@@ -1,0 +1,41 @@
+/*
+Find minimum or maximum of two integers without using branching
+
+2, 3 -> 2
+2-3 = -1 -> 1111
+
+0010, 0011 
+
+a < b = a-b = negative
+a >= b = a-b = 0 or positive
+
+step 1: subtract the numbers and observe the sign
+step 2: create a mask for the sign, negative -> 11111..., positive -> 0000...
+step 3: diff & mask
+step 4: min(a,b) = B + (diff & mask), max(a,b) = A + (diff & mask)
+
+*/
+
+#include <stdio.h>
+
+int main()
+{
+    int a = 0;
+    int b = 0;
+    
+    scanf("%d %d", &a, &b);
+    
+    int diff = (a-b);
+    
+    int mask = (diff >> 31); //+ve >> 31 gives 0, -ve >> 31 = 1
+    
+    int min = b + (diff & mask);
+    
+    int max = a - (diff & mask);
+    
+    
+    printf("min = %d, max =  %d", min, max);
+
+    return 0;
+}
+
