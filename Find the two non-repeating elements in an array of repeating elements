@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+/*
+
+LOGIC: have two results! 
+step 1 : xor all the bits, you will be left with result which tells u the differing bits
+step 2 : diff bit = result & -result = gives one splitter 1 which separates the two unique numbers into two different results
+step 3 : & the diff bit with each element in the array, it will either be 0 or 1 for that set bit which seperates the arr
+
+*/
+
+int main()
+{
+    int xorAll = 0;
+    int result1 = 0;
+    int result2 = 0;
+    
+    int arr[] = {1,2,3,2,1,5};
+    int size = 6;
+
+    for(int i = 0; i < size; i++ ){
+       xorAll = xorAll ^ arr[i];
+    }
+    
+    int diffBit = xorAll & (-xorAll);
+    
+    for(int i = 0; i < size; i++){
+        if(arr[i] & diffBit) { //if 1 
+            result1 = (result1^arr[i]);
+        }
+        else{ // if 0
+            result2 = (result2 ^ arr[i]);
+        }
+    }
+    
+    printf("result1 = %x\n", result1);
+    printf("result2 = %x\n", result2);
+    
+}
