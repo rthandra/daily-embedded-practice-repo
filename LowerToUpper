@@ -1,0 +1,17 @@
+#include <stdio.h>
+/*
+lowercase to uppercase
+a 01100001-> A 01000001
+clear the 5th set bit
+*/
+
+int main()
+{
+    int n = 0b01100001;
+    int mask = 0x20;
+
+    
+    n = (n & ~mask);
+    printf("n = %x", n);
+    return 0;
+}
