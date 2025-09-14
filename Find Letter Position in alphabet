@@ -1,0 +1,19 @@
+/*Find Letter Position in alphabet
+imp: lowest five bits of the number is the ascii value represents the no from 1-26
+*/
+#include <stdio.h>
+
+int main()
+{
+    char ch;
+    int mask = 0x1F;
+    int result = 0;
+    
+    scanf("%c", &ch); //enter alphabet
+    
+    result = (ch & mask);
+    
+    printf("result = %d", result);
+
+    return 0;
+}
