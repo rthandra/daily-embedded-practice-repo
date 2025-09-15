@@ -1,0 +1,48 @@
+/*
+Maximum Product of Word Lengths
+
+Ex: words = ["abc", "de", "fgh", "aij"] 
+pick the pair with no common letters and its highest length, if there is two return one or two.
+
+abc and fgh = 6 -> length
+
+*/
+
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+    char *word[] = {"abc", "bc", "feg", "ikl"}; //char word[] = {"abc"}, cannot hold array of strings
+    int n = 4;
+    
+    int mask[n];
+    int lengths[n];
+    int pos = 0;
+    
+    for(int i = 0; i < n; i++){ //loop over each word
+        char *ch = word[i]; //pointer to the first character in the word[i] 
+        lengths[i] = strlen(word[i]);
+        for(int j = 0; j < '\0'; j++){ //loop over the each word, null terminated because we dont know the size of each word in the array
+            pos = ch[i] - 'a'; //letter to number, a (97-
+            mask[i] = mask[i] | (1 << pos);//set that bit in that position (1-26)
+        }
+    }
+    
+    //multiply and check the highest length
+    int maxProduct = 0;
+    
+    for(int i=0; i < n; i++){
+        for(int j = i+1; j<n; j++) // j is the next word
+        
+       if((mask[i] & mask[j])== 0){//unique words
+            int prod = lengths[i] * lengths[j];
+            if (prod > maxProduct){
+                maxProduct = prod;
+            }
+        }
+    }
+    
+    printf("maxprod = %d", maxProduct);
+    return 0;
+}
