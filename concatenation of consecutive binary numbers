@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main()
+{
+    int n = 0;
+    scanf("%d", &n);
+    int result = 0;
+    
+    for(int i = 0; i <= n; i++){
+        int bitCount = 0;
+        int temp = i;
+        while(temp > 0){
+            bitCount++;
+            temp >>=1;
+        }
+        
+        result = (result << bitCount) | i;
+    }
+    
+    printf("result = %x", result);
+    
+
+    return 0;
+}
