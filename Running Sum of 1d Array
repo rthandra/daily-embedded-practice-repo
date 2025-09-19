@@ -1,0 +1,15 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* runningSum(int* nums, int numsSize, int* returnSize) {
+    
+    int *returnArr = malloc(numsSize*sizeof(int)); //dynamically allocate memory
+    *returnSize = numsSize; //tell the caller how many elements we’ll return
+    int sum = 0;
+ 
+    for(int i = 0; i<numsSize; i++){
+        sum = sum + nums[i];
+        returnArr[i] = sum;
+    }
+    return returnArr; // return pointer to the new array
+}
