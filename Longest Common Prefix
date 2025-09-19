@@ -1,0 +1,16 @@
+char* longestCommonPrefix(char** strs, int strsSize) {
+
+    for(int j = 0; strs[0][j] != '\0'; j++){ //j moves through characters in first substring
+        char c = strs[0][j]; //refering to the first substring currently
+        for(int i = 1; i < strsSize; i++){ //iterating through substrings strs[0], strs[1]....
+            if(strs[i][j] != c || strs[i][j] == '\0'){ //if the first substring and after is not equal to the first substring or end of string
+                strs[0][j] = '\0'; //end the first string there to return the common prefix if any
+                return strs[0];
+            }
+        }
+
+    }
+    
+    return strs[0]; //if the entire substring of arr[0] is equal to the rest of the other substrings
+    
+}
