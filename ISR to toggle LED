@@ -1,0 +1,11 @@
+#define GPIO_A (*(volatile uint32_t*) 0x40002020)
+
+volatile int status = 0;
+
+voidLEDIsr(void){
+    
+    GPIO_A ^= (1<<5); //toggle LED
+    
+    status = 1;
+    
+}
