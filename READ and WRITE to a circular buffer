@@ -1,0 +1,30 @@
+#include <stdio.h>
+#define SIZE 8
+
+struct CircularBuffer{
+    int buffer[SIZE];
+    int head;
+    int tail
+};
+
+//write to a CircularBuffer
+
+void write(CircularBuffer *cb, int val){
+    cb->buffer[cb->head] = val; //head to pointing to current write
+    cb->head[cb->head + 1] % SIZE;
+    
+    if(cb->head == cb->tail){ //buffer is full
+        cb->tail = (cb->tail + 1) % SIZE; //move tail to 1 and replace oldest value
+    }
+    
+}
+
+void read(CircularBuffer *cb){
+    
+    int readVal =  cb->buffer[cb->tail];
+    cb->tail = (cb->tail + 1 ) % SIZE;
+    return read Val;
+}
+
+
+
