@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+typedef enum{
+    RED;
+    YELLOW;
+    GREEN;
+}TrafficLightState;
+
+TrafficLightState currentState = RED;
+
+void nextstate(){
+    switch(currentSate){
+        case RED:
+            currentSate = GREEN;
+            break;
+        case YELLOW:
+            currentSate = RED;
+            break;
+        case GREEN:
+            currentSate = YELLOW;
+            break;
+    }
+}
