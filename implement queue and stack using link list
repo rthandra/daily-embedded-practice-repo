@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+    int val;
+    struct node *next;
+};
+
+struct node *head = NULL;
+
+struct node *createNode(int n){
+    struct node *newNode = (struct node*)malloc(sizeof(struct node));
+    newNode->val = n;
+    newNode->next = NULL;
+    
+    return newNode;
+}
+
+//queue - FIFO
+
+void add(int data){
+    
+    struct node* newNode = createNode(data);
+    newNode->next = head;
+    head = newNode;
+    
+}
+
+void delete_first(){
+    if(head == NULL){
+        return;
+    }
+    
+    struct node*temp = head;
+    head=head->next;
+    free(temp);
+}
+
+//stack - LIFO
+
+void delete_last(){
+    struct node* temp = head;
+    
+    while(temp->next->next != NULL){
+        temp = temp->next;
+    }
+    
+    free(temp->next);
+    temp->next = NULL;
+}
+
+
+
+int main()
+{
+    add(1);
+    add(2);
+    add(3);
+
+    return 0;
+}
