@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+void function_1(){
+    printf("hey I am alive\n");
+}
+
+void function_2(){
+    printf("hey I am alive too\n");
+}
+
+int main()
+{
+    void(*func_ptr)(); //type of value the function it points to returns and its parameters
+    func_ptr = function_1; //address of func1 or func_ptr = &function_1;
+    func_ptr(); //calling func1
+    
+    func_ptr = function_2;
+    func_ptr();
+
+    return 0;
+}
