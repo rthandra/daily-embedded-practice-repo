@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+void function_1(int a){
+    printf("%d\n", a);
+}
+
+void function_2(int b){
+    printf("%d\n", b);
+}
+
+
+typedef void(*func_ptr)(int);
+int main()
+{
+    func_ptr pf;
+    
+    pf = function_1;
+    pf(10);
+    
+    pf = &function_2;
+    pf(20);
+
+    return 0;
+}
