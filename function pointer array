@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+static void add(int x, int y){
+    printf("add = %d\n", x+y);
+}
+
+static void sub(int x, int y){
+    printf("sub = %d\n", x-y);
+}
+
+static void mul(int x, int y){
+    printf("mul = %d\n", x * y );
+}
+
+static void div(int x, int y){
+    printf("div = %d\n", x/y);
+}
+
+typedef void (*func_ptr)(int a, int y);
+int main()
+{
+    func_ptr func_arr[4] = {add, sub, mul, div}; // array of function pointers pointing to address of add, sub, mul, divide
+    func_arr[0](2,4);
+
+    return 0;
+}
