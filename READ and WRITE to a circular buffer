@@ -11,7 +11,7 @@ struct CircularBuffer{
 
 void write(CircularBuffer *cb, int val){
     cb->buffer[cb->head] = val; //head to pointing to current write
-    cb->head[cb->head + 1] % SIZE;
+    cb->head = [cb->head + 1] % SIZE;
     
     if(cb->head == cb->tail){ //buffer is full
         cb->tail = (cb->tail + 1) % SIZE; //move tail to 1 and replace oldest value
