@@ -6,7 +6,7 @@
 
 void uart_send_char(char c) {
     
-    if(UART_SR & UART_SR_MASK){
+    while(!(UART_SR & UART_SR_MASK)){
         UART_DR = (uint32_t)c;
     }
     else{
