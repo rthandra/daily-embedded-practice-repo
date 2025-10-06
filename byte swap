@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+/*
+
+0xCC8700FC -> 0xFC0087CC
+
+*/
+
+int main()
+{
+    int byte = 0xCC8700FC;
+    
+    byte = ((0xFF & byte) << 24 ) | ((0xFF00) & byte) << 8) | ((0x00FF0000 & bvte) >> 8) | ((0xFF000000 & byte) >> 24);
+    
+    printf("byte = %x", byte);
+
+    return 0;
+}
