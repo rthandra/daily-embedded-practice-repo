@@ -1,0 +1,21 @@
+nclude <stdio.h>
+
+struct statusofLEDS{ // int - 4 bytes = 00000000 00000000 00000000 1111111
+    
+    int LD1 : 1;
+    int LD2 : 1;
+    char LD3 : 1;
+    char LD4 : 1;
+    char LD5 : 1;
+    char LD6 : 1;
+    char LD7 : 1;
+    char LD8 : 1;
+};
+
+int main()
+{
+    struct statusofLEDS led;
+    printf("size of led = %d", sizeof(led)); //prints 4 because int is the highest data type here here
+
+    return 0;
+}
