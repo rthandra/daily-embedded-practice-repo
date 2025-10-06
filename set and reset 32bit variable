@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdint.h>
+
+uint32_t setBit(uint32_t data, int bitNum){
+    
+    data |= (1U << bitNum);
+    return data;
+}
+
+uint32_t resetBit(uint32_t data, int bitNum){
+    
+    data &= ~(1U << bitNum);
+    return data;
+}
+
+int main()
+{
+    uint32_t input = 0xCC8700FC;
+    
+    int num;
+    scanf("%d", &num);
+    int setResult = setBit(input, num);
+    printf("setResult = %x\n", setResult);
+    
+    int resetResult = resetBit(input, num);
+    printf("resetResult = %x\n", resetResult);
+   
+    return 0;
+}
