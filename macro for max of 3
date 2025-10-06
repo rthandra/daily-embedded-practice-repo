@@ -1,0 +1,9 @@
+#include <stdio.h>
+#define MAX(x,y,z) ((x>y) ? ((x>z)? x:z) : (y>z)?y:z)
+
+int main()
+{
+    printf("MAX = %d", MAX(8,5,9));
+
+    return 0;
+}
