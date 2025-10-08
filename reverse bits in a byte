@@ -1,0 +1,15 @@
+void reverseBits(unsigned char n){
+    unsigned char result = 0;
+    
+    for(int i = 0; i < 8; i++){
+        result = (result << 1) | (n & 1);
+        n = (n>>1);
+    }
+    printf("result = %x", result);
+}
+
+int main(){
+    
+    reverseBits(0b11000000);
+}
+
