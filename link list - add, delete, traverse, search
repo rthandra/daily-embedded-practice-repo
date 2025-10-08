@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+struct node{
+    int data;
+    struct node *next;
+};
+
+struct node* head = NULL;
+
+void add (int data){ //allocating memory for node
+
+    struct node* newNode = malloc(sizeof(struct node));
+    newNode->data = data;
+    newNode->next = NULL;
+    
+    if(head == NULL){
+        head = newNode;
+        return;
+    }
+    struct node*ptr = head;
+    
+    while(ptr->next){
+        ptr = ptr->next;
+    }
+    ptr->next = newNode;
+    
+    
+}
+
+void exists(int key){
+    struct node*ptr = head;
+    while(ptr!=NULL){
+        if(ptr->data == key){
+            printf("exists");
+        }
+        ptr = ptr->next;
+    }
+}
+
+void delete(int deleteVal){
+    struct node* ptr = head;
+    struct node dummy;
+    struct node* prev = &dummy;
+    dummy.next = head;
+    
+    while(ptr!= NULL){
+        if(ptr->data == deleteVal){
+            prev->next = ptr->next;
+            free(ptr); //free deleted node
+            ptr = prev->next;
+        }
+        else{
+            prev = ptr;
+            ptr = ptr->next;
+        }
+    }
+    
+    head = dummy.next;
+}
+
+void traverse (){
+    struct node* ptr = head;
+
+    while(ptr!=NULL){
+        printf(" %d\n ", ptr->data);
+        ptr = ptr->next;
+    }
+    
+}
+int main()
+{
+    add (1);
+    add (2);
+    add (3);
+    //exists(3);
+    delete(3);
+    traverse();
+    
+    return 0;
+}
