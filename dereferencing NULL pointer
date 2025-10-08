@@ -1,0 +1,8 @@
+int main(){
+    
+    int *ptr = NULL;
+    
+    int value = *ptr;
+
+    printf("value = %d", value);
+ }
