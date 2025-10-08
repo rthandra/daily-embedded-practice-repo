@@ -1,0 +1,45 @@
+struct LED{
+    
+    unsigned char LED1: 1; //signed char stores -1,  unsigned char LED1: 1 is bit width
+    unsigned char LED2: 1; 
+    unsigned char LED3: 1;
+    unsigned char LED4: 1;
+    unsigned char LED5: 1;
+    unsigned char LED6: 1;
+    unsigned char LED7: 1;
+    unsigned char LED8: 1;
+        
+};
+
+void toggleLed(int bit, struct LED* ptr ){
+    
+    switch (bit){
+    case 1:    ptr->LED1 ^=1;  break;
+    case 2:    ptr->LED2 ^=1;  break;
+    case 3:    ptr->LED3 ^=1;  break;
+    case 4:    ptr->LED4 ^=1;  break;
+    case 5:    ptr->LED5 ^=1;  break;
+    case 6:    ptr->LED6 ^=1;  break;
+    case 7:    ptr->LED7 ^=1;  break;
+    case 8:    ptr->LED8 ^=1;  break;
+    }
+}
+ 
+
+int main(){
+    
+    struct LED led = {1,1,1,1,1,1,1,1};
+    //int bit = 0;
+    //scanf("%d", &bit);
+    
+    struct LED* ptr = &led;
+    
+    toggleLed(2, ptr); // u dont have return since its pass by pointer not val
+    toggleLed(5, ptr);
+    //ptr->LED5 ^= 1;
+    
+    printf("toggle = %d\n", ptr->LED2);
+    printf("toggle = %d\n", ptr->LED5);
+    
+    return 0;
+}
