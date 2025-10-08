@@ -1,0 +1,8 @@
+#define GPIO ((volatile uint32_t*) 0x40020000)
+
+int main(){
+    
+    GPIO |=  (1<<5); //set LED1
+    GPIO &= ~(1<<6); //turn off LED2
+    
+    return 0;
