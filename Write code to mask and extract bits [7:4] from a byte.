@@ -1,0 +1,19 @@
+void extract(int byte, int right, int left){
+    int result = 0;
+    
+    int width = (right - left) + 1;
+    int mask = (((1<<width) - 1) << left);
+    
+    result = ((byte & mask) >> left);
+    printf("result = %0x\n", result);
+}
+
+int main(){
+    
+    int byte = 0b11000000;
+    int right = 7;
+    int left = 4;
+    
+    extract(byte, right, left);
+    return 0;
+}
