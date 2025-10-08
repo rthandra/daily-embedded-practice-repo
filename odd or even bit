@@ -1,0 +1,15 @@
+void oddOrEven(int n){
+  
+  if((n & (n-1)) == 0){
+      printf("power of 2");
+  }
+  else{
+      printf("not power of 2");
+  }
+    
+}
+
+int main(){
+    oddOrEven(0);
+    return 0;
+}
