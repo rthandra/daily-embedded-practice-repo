@@ -1,0 +1,12 @@
+#define SET(reg, n)   ((reg) |= (1U << (n))) //wrap arguments with paranthesis
+#define CLEAR(reg, n)  ((reg) &= ~(1U << (n)))
+#define TOGGLE(reg, n)  ((reg)) ^= (1U << (n))) 
+
+int main()
+{
+    uint8_t reg = 0x00;
+    
+    SET(reg, 2);
+    CLEAR(reg, 2);
+    TOGGLE(reg, 2);
+}
