@@ -1,0 +1,25 @@
+void pack(uint8_t B0, uint8_t B1, uint8_t B2, uint8_t B3){
+    
+    uint32_t result = 0;
+    
+    /*result  =   (result | (B0 << 0)) | 
+                (result | (B1 << 8)) | 
+                (result | (B2 << 16)) | 
+                (result | (B3 << 24));
+    */
+    result = ((uint32_t) B0 << 0) |  //result every time is waste, typecase the 8 bit to 32 bit to avoid errors
+            ((uint32_t) B1 << 8) | 
+            ((uint32_t) B2 << 16) |
+            ((uint32_t) B3 << 24);
+                
+    printf("result = %0x", result);            
+}
+
+int main(){
+    
+    uint8_t B0 = 1, B1 = 2, B2 = 3, B3 = 4;
+    
+    pack(B0, B1, B2, B3);
+
+    return 0;
+}
