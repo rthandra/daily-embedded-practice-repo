@@ -1,0 +1,21 @@
+void maxAddress(int *arr, int size){
+    
+    int *address = arr;
+    
+    for(int i = 0; i < size - 1; i++){
+        if(arr[i] > *address){
+            address = &arr[i]; //arr is already a pointer to arr
+        }
+    }
+    printf(" address = %p", address);
+}
+
+int main(){
+    
+    int arr[] = {1,2,3,4,5,5,6};
+    int size = sizeof(arr)/ sizeof(arr[0]);
+    
+    maxAddress(arr, size);
+    return 0;
+}
+
