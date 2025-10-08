@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <string.h>
+
+void safeCopy(char* buff, char* data, int size){
+    
+    strncpy(buff, data, size-1);
+    buff[size-1] = '\0';
+    
+}
+
+int main(){
+    
+    char BUFF[8];
+    const char *data = "mynameisRushika"; //pointer because we want to only read it, char data[] if we want to modify it
+    safeCopy(BUFF, data, sizeof(BUFF));
+}
