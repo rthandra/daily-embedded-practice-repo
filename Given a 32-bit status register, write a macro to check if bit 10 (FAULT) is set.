@@ -1,0 +1,12 @@
+#define CHECK_FAULT(status) ((status & (1<<10)) ? true : false)
+
+int main(){
+    
+    volatile uint32_t status = 0;
+    
+    //status |= (1<<10);
+    
+    printf("check set = %d\n ", CHECK_FAULT(status)); //prints 1 if true
+    
+    return 0;
+}
