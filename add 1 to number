@@ -1,0 +1,13 @@
+void addOne(int num){
+    
+    num = -(~(num));
+    
+    printf("num = %0x", num);
+}
+
+int main(){
+    
+    addOne(3);
+    return 0;
+}
+
