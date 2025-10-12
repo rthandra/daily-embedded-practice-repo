@@ -1,15 +1,17 @@
-void oddOrEven(int n){
-  
-  if((n & (n-1)) == 0){
-      printf("power of 2");
-  }
-  else{
-      printf("not power of 2");
-  }
-    
+#include <stdio.h>
+
+void evenOdd(int num){
+     
+    if(num & 1){
+        printf("odd");
+    }
+    else {
+        printf("even");
+    }
 }
 
-int main(){
-    oddOrEven(0);
+int main()
+{
+    evenOdd(7);
     return 0;
 }
