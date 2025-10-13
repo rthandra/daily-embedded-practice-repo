@@ -1,0 +1,17 @@
+void prevPow(int n){
+    
+    int count = (n & (n-1));
+    
+    int result = pow(2, count);
+    printf("result = %d", result);
+    
+    
+}
+
+int main(){
+    
+   prevPow(4); 
+    
+  return 0;  
+    
+}
