@@ -4,7 +4,7 @@
         printf("not power of 4");
    }
    
-    while(n != 1){
+    while(n % 4 == 0){
         n = n/4; //repeatdly divide until value is 1
     }
     printf("power of 4");
