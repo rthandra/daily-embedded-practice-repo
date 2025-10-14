@@ -1,0 +1,16 @@
+void countSet(int n){
+    int count = 0;
+    while(n>0){
+        n = (n & (n-1)); //imp- removes left most set bits 
+        count ++;
+    }
+    
+    printf("count = %d\n", count);
+    
+}
+
+int main(){
+    
+    countSet(8);
+    return 0;
+}
