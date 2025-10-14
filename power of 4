@@ -1,0 +1,39 @@
+/*void powOf4(int n){
+    
+   if(n % 4 != 0){
+        printf("not power of 4");
+   }
+   
+    while(n != 1){
+        n = n/4; //repeatdly divide until value is 1
+    }
+    printf("power of 4");
+    
+}
+
+int main(){
+    
+    int n = 0;
+    scanf("%d", &n);
+    powOf4(n);
+    return 0;
+}*/
+
+void powOf4(int n ){
+    
+    if ((n>0) && ((n & (n-1)) == 0) && (n & 0x55555555)){
+        printf("power of 4");
+    }
+    else{
+        printf("not power");
+    }
+    
+}
+
+int main(){
+    
+    int n = 0;
+    scanf("%d", &n);
+    powOf4(n);
+    return 0;
+}
