@@ -1,0 +1,46 @@
+/*void powOf8(int n){
+    
+    while(n % 8 == 0){
+        n /= 8;
+        printf("%d\n", n);
+    }
+    
+    if(n == 1){
+        printf("power of 8");
+    }
+    else{
+        printf("not power of 8");
+    }
+
+}
+
+int main(){
+    
+    int n = 0;
+    scanf("%d", &n);
+    powOf8(n);
+    
+    return 0;
+}*/
+
+//bitwise
+
+    void powOf8(int n){
+        
+        if( (n > 0) && ((n & (n-1)) == 0) && (n & 0x09249249)){ //largest power of 8 bit in 32
+            printf("power of 8");
+        }
+        else{
+            printf("not power of 8");
+        }
+    }
+    
+    int main(){
+        
+        int n = 0;
+        scanf("%d", &n);
+        powOf8(n);
+        
+        return 0;
+    }
+
