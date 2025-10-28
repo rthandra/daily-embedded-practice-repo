@@ -1,0 +1,20 @@
+void binaryAdd(int a, int b){
+
+    while(b){
+        //how would i check for power
+        int carry = (a & b) << 1;
+        a = a ^ b; //sum without carry
+        b = carry;
+    }
+    
+    printf("a = %d", a);
+    
+}
+
+int main(){
+    
+    int a = 2;
+    int b = 4;
+    binaryAdd(a, b);
+    return 0;
+}
