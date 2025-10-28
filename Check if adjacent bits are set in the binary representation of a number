@@ -1,0 +1,30 @@
+/*bool adjacentSet(int n){
+    
+    while(n){
+        if (n & 1){
+            if(n & (n>>1)){
+                return true;
+            }
+        }
+        n >>= 1;
+    }
+    return false;
+    
+}*/
+
+bool adjacentSet(int n){
+    if(n & (n>>1)){
+       return true; 
+    }
+    return false;
+}
+
+int main(){
+    
+    int n = 0;
+    bool check = adjacentSet(n);
+    
+    printf("%d", check);
+    
+    return 0;
+}
