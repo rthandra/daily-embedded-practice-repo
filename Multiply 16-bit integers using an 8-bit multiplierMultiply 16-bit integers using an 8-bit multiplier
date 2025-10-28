@@ -1,0 +1,43 @@
+//0000 0001 0011 1100
+//0000 0110
+
+
+/*int mul( int16_t a, int16_t b ){
+    
+    uint8_t AH = (a >> 8) & 0xFF; //int8_t is risky
+    printf("%d\n", AH);
+    uint8_t AL = (a & 0xFF);
+    printf("%d\n", AL);
+    uint8_t BH = (b >> 8) & 0xFF;
+     printf("%d\n", BH);
+    uint8_t BL = (b & 0xFF);
+     printf("%d\n", BL);
+    
+    //A * B = (AH * 256 + AL) * (BH * 256 + BL) = 
+    
+    int result = ((AH * BH) << 16) + ((AH * BL) << 8) + ((AL*BH) << 8) + (AL * BL);
+    return result;
+}*/
+
+
+void mul(int16_t a, int8_t b ){
+    int result = 0;
+    while(b){
+        if(b & 1){
+        result = result + a;
+        }
+        a = (a<<1); //move a to the next binary place
+        b = (b>>1);
+        
+    }
+    printf("result = %d", result);
+    
+}
+int main(){
+    
+   int16_t a = 1234;
+   int8_t b = 12;
+   mul(a,b);
+    
+    return 0;
+}
