@@ -1,0 +1,84 @@
+//[1,2,2,2,3,4,4,5,5]
+
+/*void findALL(int *arr, int n){
+    
+    int frequency[31] = {0}; //creating another array to calculate the frequency
+    
+    for(int i = 0; i < n; i++){
+        frequency[arr[i]] = frequency[arr[i]] + 1; //add its respective frequency 
+    }
+    
+    //checking if its odd or not
+    
+    for(int i = 0; i < 31; i++){
+        if(frequency[i] % 2 != 0){ //if 0 then even
+            printf("odd occuring = %d\n", i);
+        }
+    }
+}
+
+int main(){
+    
+    int arr[] = {1,2,2,2,3,3,9};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    
+    findALL(arr, n);
+    
+    return 0;
+}*/
+
+
+//BITWISE
+
+/*void findAllodd(int * arr, int n){
+    
+    int bitmask = 0;
+    
+    for(int i = 0; i < n ; i++){
+        bitmask ^= (1 << arr[i]); //toggle everytime you see the number
+    }
+    
+    for(int i = 0; i < 31; i++){
+         if(bitmask & (1 << i)){
+            printf("count = %d\n", i);
+         }
+         
+    }
+    
+}
+
+
+void main(){
+    
+    int arr[] = {1,2,2,4,4,4,5,8};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    
+    findAllodd(arr,n);
+    
+}*/
+/*void findAllodd(int * arr, int n){
+    
+    int bitmask = 0;
+    
+    for(int i = 0; i < n ; i++){
+        bitmask ^= (1 << arr[i]); //toggle everytime you see the number
+    }
+    
+    for(int i = 0; i < 31; i++){
+         if(bitmask & (1 << i)){
+            printf("count = %d\n", i);
+         }
+         
+    }
+    
+}
+
+
+void main(){
+    
+    int arr[] = {1,2,2,4,4,4,5,8};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    
+    findAllodd(arr,n);
+    
+}*/
