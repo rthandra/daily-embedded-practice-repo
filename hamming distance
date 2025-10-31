@@ -1,0 +1,22 @@
+void hammingDistance(int a , int b){
+    
+    int result =  (a ^ b);
+    int count = 0;
+    while(result){
+      if(result & 1){
+          count++;
+      }
+      result >>=1;
+    }
+    
+    printf("count = %d\n", count);
+    
+}
+
+void main(){
+    
+    uint32_t a = 2;
+    uint32_t b = 2;
+    
+    hammingDistance(a,b);
+}
