@@ -1,0 +1,27 @@
+void my_memcpy(int *des, int *src, int n){
+    
+    char *d = (char*)des; // * because pointers that move through memory
+    char *s = (char*)src;
+    
+    while(n){//n is 4 
+        *d  = *s; // byte by byte
+        s++; //next byte address
+        d++;
+        n--;
+    }
+    
+    printf("b = %d\n", *des);
+    
+}
+
+void main(){
+    
+    int a = 0;
+    int b = 3;
+    
+    int *src = &a;
+    int *des = &b;
+    
+    my_memcpy(des,src,sizeof(int));
+    
+}
