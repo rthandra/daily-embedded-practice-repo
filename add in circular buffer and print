@@ -1,0 +1,38 @@
+//49. Implement a circular buffer of fixed size.
+#define SIZE 5
+
+struct cBUFF{
+    
+    int BUFF[SIZE];
+    int head;
+    int tail;
+};
+struct cBUFF buff = {{0},0,0};
+struct cBUFF *p = &buff;
+ 
+void add(int val){
+    
+   // struct cBUFF buff = {0,0,0}; // you cannot assign to cBUFF directly, disappears
+    p->BUFF[p->head] = val;
+    p->head = (p->head + 1) % SIZE; //wraps
+
+}
+void print(){
+    
+    for (int i = 0; i < SIZE; i++){
+        printf("%d",p->BUFF[i]);
+    }
+}
+void main(){
+    
+    add(3);
+    add(4);
+    add(5);
+    add(6);
+    add(7);
+    add(8);
+    add(9);
+    add(10);
+    add(2);
+    print();
+}
