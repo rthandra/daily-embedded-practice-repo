@@ -1,0 +1,42 @@
+//62. Implement push and pop operations in stack
+
+#define SIZE 5
+//#define stack[SIZE]
+
+int stack[SIZE];
+
+int top = -1; // to track elements
+
+void push(int val){
+    
+    if(top == SIZE - 1){
+        printf("stack overflow");
+    }
+    top++;
+    stack[top] = val;
+}
+
+void pop(){
+    
+    if(top == -1){
+        printf("stack underflow");
+    }
+    printf("%d\n",stack[top]);
+    top--;
+    
+}
+
+void main(){
+    
+    push(45);
+    push(24);
+    push(44);
+    push(46);
+    push(56);
+    pop();
+    pop();
+    pop();
+    pop();
+
+}
+
