@@ -49,10 +49,49 @@ bool isPalindrome(struct ListNode* head) {
             firstHalf = firstHalf->next;
             secondHalf = secondHalf->next;
         }
+    }
+    return true;
+}
 
+//similar method:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+/*bool isPalindrome(struct ListNode* head) {
+    
+     struct ListNode  *prev = NULL;
+     struct ListNode  *slow = head;
+     struct ListNode  *fast = head;
+
+    //find middle node
+    while(fast && fast->next){
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    //reverse
+    while(slow){
+        struct ListNode *next = slow->next;
+        slow->next = prev;
+        prev = slow;
+        slow = next;
+    }
+
+    struct ListNode *p1 = head;
+    struct ListNode *p2 = prev;
+
+    while(p2){ //safer
+        if(p1->val == p2->val){
+            p1 = p1->next;
+            p2 = p2->next;
+        }
+        else {
+            return false;
+        }
     }
     return true;
 
-
-}
-
+}*/
