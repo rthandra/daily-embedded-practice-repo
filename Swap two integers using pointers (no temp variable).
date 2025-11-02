@@ -1,0 +1,14 @@
+void main(){
+    
+    int a = 1;
+    int b = 2;
+    
+    int *pa = &a;
+    int *pb = &b;
+    
+    *pa = *pa ^ *pb;
+    *pb = *pa ^ *pb;
+    *pa = *pa ^ *pb;
+    
+    printf(" %d %d\n", a, b);
+}
