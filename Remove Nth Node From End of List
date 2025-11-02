@@ -48,3 +48,35 @@ struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
     
     return dummy->next;
 } 
+
+method 2: 
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
+
+    struct ListNode dummy;
+    dummy.next = head;
+    struct ListNode *slow = &dummy;
+    struct ListNode *right = head;
+
+    for(int i = 0; i < n; i++){
+        right = right->next;
+    } 
+
+    while(right){
+        slow = slow->next;
+        right = right->next;
+    }
+    slow->next = slow->next->next;
+
+    return dummy.next;
+
+}
+
+
