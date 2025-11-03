@@ -1,0 +1,20 @@
+volatile int lock = 0 //unlock initially
+
+void lock(volatile int *lock){
+    while(*lock == 1){ //currently locked, wait until unlock
+        
+    }
+    *lock = 1; //
+}
+void unlock(int *lock){
+    *lock = 0;
+}
+
+int main(){
+    
+    void unlock(&lock); //needs to work on the original variable
+    
+    void lock(&lock);
+    
+    return 0;
+}
