@@ -1,0 +1,39 @@
+consumer sends a signal that its ready,receives data
+
+//shared buffer
+buffer[N] //buffer size of N
+int = 0; //index for producer
+out = 0;//index for consumer
+
+//semaphores
+
+wait
+empty
+full
+
+//producer
+
+void producer(){
+    wait(empty)//checks if there is atleast one slot, if there is one we decrement
+    wait(mutex)//enter critical section 
+    
+    buffer[in] = item;
+    in = in%N //moves to the next index
+    
+    signal(mutex) //to leave the critical section
+    signal(full) //increment full by one because we just added a value and notifies customer that
+    
+}
+
+void consumer(){
+    wait(full) //wait if the buffer is empty
+    wait(mutex)//enter buffer
+    
+    item = buffer[out]; //consume the data
+    out = out % N
+    
+    signal(mutex)//leaving mutex
+    signal(empty) //notifies producer that there is free space
+    
+    removes the latest item consumed
+}*/
