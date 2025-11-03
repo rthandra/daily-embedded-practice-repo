@@ -1,0 +1,108 @@
+
+#include <stdlib.h>
+typedef struct Node{
+    
+    struct Node *next;
+    struct Node *prev;
+    int val;
+}Node;
+
+Node *head = NULL;
+
+Node *createNode(int val){
+    Node *newNode = malloc(sizeof(Node));
+    newNode -> next = NULL;
+    newNode -> prev = NULL;
+    newNode -> val = val;
+    
+    return newNode;
+}
+
+void add(int val){
+    
+    Node *newNode = createNode(val);
+    if(head == NULL){ //list is empty
+        head = newNode;
+    }
+    else{
+        Node *temp = head;
+        while(temp->next){
+           //newNode->prev = temp;//not adding, consider empty loop
+           temp = temp->next;
+           
+        }
+        temp->next = newNode;
+        newNode->prev = temp;
+    }
+    
+}
+
+void print(){
+    Node *temp = head;
+    
+    while(temp){
+        printf("%d\n", temp->val);
+        printf("%p\n", temp->next);
+        printf("%p\n", temp->prev);
+        temp = temp->next;
+        
+    }
+}
+
+void delete(int n){
+    Node *curr = head;
+    Node dummy;
+    dummy.next = head;
+    dummy.prev = NULL;
+    Node *temp = &dummy;
+    
+    while(curr){
+        if(curr->val == n){
+            temp->next = curr->next;
+            
+            free(curr);
+            curr = temp->next;
+            curr->prev = temp;
+            
+        }
+        else{
+
+            temp = curr;
+            curr = curr->next;
+        }
+    }
+    head = dummy.next;
+}
+
+int main(){
+    
+    add(2);
+    add(4);
+    add(6);
+    add(10);
+ 
+    delete(4);
+    delete(6);
+    print();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
