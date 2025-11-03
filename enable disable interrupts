@@ -1,0 +1,22 @@
+bool enable_interrupts = true;
+int counter = 0;
+
+void enable(){
+    enable_interrupts = true;
+}
+
+void disable(){
+    enable_interrupts = false;
+}
+
+int main(){
+    
+    printf("counter before = %d\n",counter);
+    void disable();
+    counter++;
+    void enable();
+    printf("counter after = %d\n",counter);
+    return 0;
+}
+
+
