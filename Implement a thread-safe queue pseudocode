@@ -1,0 +1,43 @@
+
+#define N 7
+
+//queue struct
+
+typedef struct Queue{
+    int buff[N];
+    int front;
+    int rear;
+    int size;
+}Queue;
+
+void initQueue(Queue *q){ //initialize pointer q that directly modifies the struct and you pass by dereference
+    q->front = 0;
+    q->rear = 0;
+    q->size = -1;
+}
+
+void enque(Queue *q, int val){
+    if(size == N){
+        printf("buffer is full");
+        return -1;
+    }
+    mutex lock
+    q->buff[q->rear] = val; 
+    q->rear = (q->rear + 1) % N;
+    q-size++;
+    mutex unlock
+}
+
+int deque(Queue *q, int val){
+    if(size == -1){
+        printf("buff is -1")
+        return -1;
+    }
+    mutex lock
+    int item = q->buff[q->front]; //save the item
+    q->front = (q->front + 1) % N;
+    q->size--;
+    mutex unlock
+    return item;
+}
+
