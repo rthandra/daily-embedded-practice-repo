@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdint.h>
+
+//union sensor packet reading
+
+union packet{
+    uint32_t raw;
+    uint16_t bytes[4];
+};
+
+int main()
+{
+    union packet p;
+    
+    p.raw = 0xAABBCCDD;
+    printf("%X\n", p.bytes[0]);
+
+    return 0;
+}
