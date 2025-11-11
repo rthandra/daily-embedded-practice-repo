@@ -1,0 +1,32 @@
+Write a pseudo-task that toggles LED every 500ms (non-blocking loop).
+
+#define GPIO (*(volatile uint32_t*)0x40021000)
+
+/*while(1){
+    GPIO ^= (1<<5); //toggle led 
+    delay(500ms); //blocking the cpu for 500ms, Waits 500 ms each loop, CPU is stuck doing nothing
+}*/
+
+int last = 0;
+
+while(1){
+    
+    int now = getMillis();
+    
+    if(now - last >= 500ms){ //>=almost 500ms
+        GPIO ^= (1<<5);
+        last = now;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
