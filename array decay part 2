@@ -1,0 +1,15 @@
+static uint8_t table[16] //8 bits one byte
+
+void use_array(uint8_t *p){
+    size_t size_in_callee = sizeof(*p); //one byte
+    printf("inside arr = %d\n", size_in_callee);
+    (void)size_in_callee;
+}
+
+int main(){
+    
+    size_t size_in_caller = sizeof(table);
+    printf("table = %d\n", size_in_caller);
+    use_array(table);
+    
+}
