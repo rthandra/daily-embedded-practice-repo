@@ -1,0 +1,34 @@
+//structure with function pointers
+
+struct sensor{
+    void(*data)(int,int);
+    int(*time)(int);
+    uint32_t(*val)(uint32_t n);
+};
+
+//actual functions
+
+void s_data(int a, int b){
+    printf("%d\n", a+b);
+}
+
+int s_time(int t){
+    return t;
+}
+
+uint32_t s_val(uint32_t values){
+    return values * values;
+}
+
+int main(){
+    
+    struct sensor s;
+    
+    s.data = s_data;
+    s.time = s_time;
+    s.val = s_val;
+    
+    s.data(10,20);
+    printf("%d\n", s.time(5));
+    printf("%d\n", s.val(30));
+}
