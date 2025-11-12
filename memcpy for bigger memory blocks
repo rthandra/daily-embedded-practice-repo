@@ -1,0 +1,22 @@
+void memcpy(void *des, void *src, int size){
+    double *d = (double*)des;
+    double *s = (double*)src;
+    
+    int n = size/8;
+    int rem = size % 8;
+    
+    while(n){
+        *d = *s;
+        d++;
+        s++;
+        n--;
+    }
+    char *d1 = (char*)d;
+    char *s1 = (char*)s;
+    while(rem){
+        *d1 = *s1;
+        d1++;
+        s1++;
+        rem--;
+    }
+}
