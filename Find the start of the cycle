@@ -1,0 +1,25 @@
+Node *isCycle(){ //1,2,3,4->NULL
+    Node *slow = head;
+    Node *fast = head;
+    int pos = 0;
+    
+    
+    while(fast && fast->next){
+        fast = fast->next->next;
+        slow = slow->next;
+
+        if(fast == slow){
+            slow = head; //reset slow
+            while(slow!=fast){
+                slow = slow->next;
+                fast = fast->next;
+            }
+            return slow;
+        }
+        
+        
+    }
+    return NULL;
+    
+    
+}
