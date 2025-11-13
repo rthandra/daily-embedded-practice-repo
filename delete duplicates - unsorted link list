@@ -1,0 +1,25 @@
+void deleteUnsorted(){
+    
+    Node *curr = head;
+    Node *prev = curr;
+    Node *nextNode = curr->next;
+    
+    while(curr){
+         Node *prev = curr; //reset 
+         Node *nextNode = curr->next; //reset
+        while(nextNode){
+            if(nextNode->val == curr->val){
+                prev->next = nextNode->next;
+                free(nextNode);
+                nextNode = prev->next;
+            }
+            else{
+                prev = nextNode;
+                nextNode = nextNode->next;
+            }
+        }
+        curr = curr->next;
+        
+    }
+    
+}
