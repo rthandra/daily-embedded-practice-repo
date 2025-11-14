@@ -1,15 +1,14 @@
 #include <stdio.h>
 
-#define UART_DR (*(volatile uint32_t*)0x404065670) //UART data register
-#define UART_SR (*(voltile uint32_t*)0x5478949049) //status register
-#define UART_SR_MASK (1<<7) //if bit is set then we know its empty and can be used
 
-void uart_send_char(char c) {
-    
-    while(!(UART_SR & UART_SR_MASK)){
-        UART_DR = (uint32_t)c;
-    }
-    else{
+#define UART_DR (*(volatile uint32_t*)0x1234)
+#define UART_SR (*(volatile uint32_t*)0x40021000
+#define UART_STATUS_REG (1<<5)
+
+void send(char c){
+    while(!(UART_SR & UART_STATUS_REG)){
         
     }
+    UART_DR = (uint32_t)c;
 }
+
