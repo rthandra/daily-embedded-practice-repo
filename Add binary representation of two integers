@@ -1,20 +1,16 @@
-void binaryAdd(int a, int b){
-
+int getSum(int a, int b) {
+    //1. addition without carry is ^
+    //2. to check carry it is &
+    //3. we need to know carry position
+    // cast a and b to unsigned because shifting negative numbers give garbage values
+    
     while(b){
-        //how would i check for power
-        int carry = (a & b) << 1;
-        a = a ^ b; //sum without carry
+        unsigned carry =  ((unsigned)a & (unsigned)b) << 1; //carry is always inthe next position
+        a = a ^ b;
         b = carry;
+        
     }
+    return a;
     
-    printf("a = %d", a);
     
-}
-
-int main(){
-    
-    int a = 2;
-    int b = 4;
-    binaryAdd(a, b);
-    return 0;
 }
