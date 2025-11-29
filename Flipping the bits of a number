@@ -1,0 +1,21 @@
+void flipBits(int n){
+    
+    int temp = n;
+    int mask = 0;
+    
+    while(temp){
+        mask <<= 1;
+        mask |= 1;
+        temp >>=1;
+    }
+    
+    n ^= mask;
+    printf("mask = %0x\n", mask);
+    
+    printf("flipped n = %d", n);
+}
+
+void main(){
+    
+    flipBits(23);
+}
