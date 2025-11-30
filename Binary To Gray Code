@@ -1,0 +1,9 @@
+// Binary To Gray Code Conversion - toggle every bit except for MSB with its previous bit
+int greyConverter(int n) {
+    // code here
+    int g = 0;
+    
+    g = n ^ (n>>1);
+    return g;
+}*/
+
