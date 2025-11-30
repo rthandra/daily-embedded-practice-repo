@@ -1,0 +1,16 @@
+int posOfRightMostDiffBit(int m, int n) {
+    // code here
+    int  xor = m ^ n;
+    int pos = 1;
+    while(xor){
+        if(xor & 1){
+            return pos;
+        }
+        else{
+            xor = xor>>1;
+            pos++;
+        }
+    }
+    return -1;
+    
+}
