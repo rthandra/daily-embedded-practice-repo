@@ -1,0 +1,12 @@
+int grayToBinary(int n) {
+   int b = n;
+    
+    while(n){
+        n = n>>1;
+        b ^= n;
+    }
+    
+    return b;
+
+    
+}
