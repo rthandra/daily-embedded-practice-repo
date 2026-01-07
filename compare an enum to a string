@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef enum {
+      MANGO, APPLE, GRAPE
+}fruit;
+
+fruit printEnum(char *ptr){
+    if(strcmp(ptr, "mango") == 0){ // 0 if true
+        return MANGO;
+    }
+    else if(strcmp(ptr, "apple") == 0){ //ptr -> strcmp expects ptr to string, not one char
+        return APPLE;
+    }
+    else if(strcmp(ptr, "grape") == 0){
+        return GRAPE;
+    }
+}
+
+int main(){
+ 
+    char s[256];
+    scanf("%s", s);
+    fruit result = printEnum(s);
+    printf("%d", result);
+    return 0;
+}
