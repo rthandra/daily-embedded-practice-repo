@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+volatile int status = 0;
+int timer = 1000;
+
+bool countdown(){
+  while(timer > 0){
+      if(status == 0){
+          return true;
+       }
+       timer--;
+ }
+  return false;
+    
+}
