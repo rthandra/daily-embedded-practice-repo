@@ -1,0 +1,53 @@
+//brute force - very bad
+/*#include <stdio.h>
+
+int repeating(int *arr, int size){
+    for(int i = 0; i < size; i++){
+        for(int j = i+1; j < size; j++){
+            if(arr[i] == arr[j]){
+                return i;
+            }
+        }
+    }
+    return -1;
+    
+}
+int main(){
+    
+    int arr[]={1,9,7,3,4,5,3,6};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    
+    repeating(arr, size);
+}*/
+
+/*
+int repeating(int *arr, int size){
+    
+    //creating an array hashmapish
+    //int hash[size] = {0}; //not allowed
+    
+    int *hash = calloc(size, sizeof(int));
+    
+    for(int i = 0; i < size; i++){
+        hash[arr[i]]++;
+    }
+    
+    for(int i = 0; i < size; i++){
+        if(hash[arr[i]] > 1){
+            return i;
+        }
+    }
+    free(hash);
+    return -1;
+}
+
+
+
+int main(){
+    
+    int arr[]={1,9,7,3,4,5,3,9,6};
+    int size = sizeof(arr)/sizeof(arr[0]);
+    
+    int index = repeating(arr, size);
+    printf("index = %d", index);
+}*/
