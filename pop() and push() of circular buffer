@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 3
+typedef struct{
+  int head;
+  int tail;
+  int arr[MAX];
+  int count;
+}BUFF;
+void pop(BUFF *cBuff){
+  int pop = 0;
+  pop = cBuff->arr[cBuff->head];
+  cBuff->head = (cBuff->head + 1 )% MAX;
+  cBuff->count = cBuff->count - 1;
+  printf("%d\n", pop);
+}
+void push(BUFF *cBuff, int val){
+   if(cBuff->count == MAX){
+    pop(cBuff);
+  }
+  
+  cBuff->arr[cBuff->tail] = val;
+  cBuff->tail = (cBuff->tail + 1) % MAX;
+  cBuff->count = cBuff->count+1;
+
+}
+int main() {
+  BUFF *cBuff = malloc(sizeof(BUFF));
+  cBuff->head = 0;
+  cBuff->tail = 0;
+  cBuff->count = 0;
+
+  push(cBuff,1);
+  push(cBuff,2);
+  push(cBuff,3);
+  push(cBuff,4);
+  push(cBuff,5);
+  //printt(cBuff);
+  
+  return 0;
+}
