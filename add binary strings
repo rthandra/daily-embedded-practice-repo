@@ -1,0 +1,52 @@
+Given two binary strings a and b, return their sum as a binary string.
+Example 1:
+
+Input: a = "11", b = "1"
+Output: "100"
+Example 2:
+
+Input: a = "1010", b = "1011"
+Output: "10101"
+
+/*
+when you do 1 + 1 % 2 you get sum without carry, and 1+1/2 will give you the carry
+*/
+
+char* addBinary(char* a, char* b) {
+    
+    int i = strlen(a) - 1; //apple, strlen is 5 but i is 0 index so it shd be 0,1,2,3,4
+    int j = strlen(b) - 1;
+    int k = 0;
+    int max = strlen(a) + strlen(b) + 2; //1 - carry, 1 - '\0'
+    char *output = malloc(max);
+    int carry = 0;
+
+    while(i >=0 || j >= 0 || carry){ //i >=0 because u need to consider '0'th element
+        if(i >= 0){
+            carry += a[i] - '0';
+            i--;
+        }
+        if( j >= 0){
+            carry += b[j] - '0';
+            j--;
+        }
+
+        output[k++] = (carry % 2) + '0';
+        carry = carry/2;
+    }
+    output[k] = '\0'; //need to add null terminator for strings
+
+    //reverse string
+    int l = 0;
+    int r = k-1;
+    while(l<r){
+        char temp = output[l];
+        output[l] = output[r];
+        output[r] = temp;
+        l++;
+        r--;
+    }
+
+    return output;
+    
+}
