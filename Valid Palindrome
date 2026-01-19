@@ -66,3 +66,37 @@ bool isPalindrome(char* s) {
  return true;
 
 }
+
+//best solution O(n) and O(1) space:
+
+palindrome - if it reads same forward or backward
+1. convert all upper case to lower case
+3. inside that loop check if the char is alphanumeric or not
+4. have two pointers, one in start and one in end
+5. if the char is alpha, compare the pointers if they are equal
+6. if they are not move the pointer or both forward until they are, do this until right crosses left -> this will be the main loop
+7. imp-you need to move across non alpha and check in the same loop - otherwise you will loop will end early
+*/
+
+bool isPalindrome(char* s) {
+    int left = 0; //A
+    int right = strlen(s)-1; //a
+
+    while(left<right){
+        if(!isalpha(s[left])){
+            left++;
+        }
+        else if(!isalpha(s[right])){
+            right--;
+        }
+        else if(tolower(s[left]) != tolower(s[right])){
+            return false;
+        }
+        else{ //if its true then,
+            left++; 
+            right--;
+        }
+        
+    }
+    return true;
+}
