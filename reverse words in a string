@@ -1,0 +1,50 @@
+/*
+-reverse string and reverse word in a string
+-reverse a string for every word (eulb si…)
+-reverse a word in a string (the sky is blue/ blue is sky the)
+*/
+
+/*
+reverse a word in a string - Rishika is a good girl - akihisir si a doog lrig
+ 1. intialize left and right pointer 
+ 2. forward pointer will move forward until space is found, r is set to forward and swap with left until right < left, once that is done move forward to the value aftere space, now set start index to l, once space found again, r is set to forward and reversed - LOGIC
+ 3. do the while loop until null terminator
+
+*/
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+
+void reverseWords(char *s){
+    int len = strlen(s);
+    int left = 0;
+    int right = len - 1;
+    int forward = len - 1;
+    char *arr = malloc(len + 1);
+    int i = 0;
+
+    while(forward >= 0){
+
+        if(s[forward] != ' ' && (s[forward + 1] == ' ' || forward == len - 1)){
+            right = forward;
+        }
+
+        if(s[forward] != ' ' && (forward == 0 || s[forward - 1] == ' ' )){ //start of word
+            left = forward;
+             while(left <= right){
+                arr[i++] = s[left];
+                left++;
+             }
+            arr[i++] = ' '; //space after every word in the new array
+        } 
+        forward--;
+    }
+    arr[i++] = '\0';
+    free(arr);
+}
+int main() {
+  char s[] = "Rish is  a good girl";
+  reverseWords(s);
+  return 0;
+}
