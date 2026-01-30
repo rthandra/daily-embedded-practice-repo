@@ -1,0 +1,75 @@
+/*
+Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+Example 1:
+
+Input: s = "aba"
+Output: true
+Example 2:
+
+Input: s = "abca"
+Output: true
+Explanation: You could delete the character 'c'.
+Example 3:
+
+Input: s = "abc"
+Output: false
+
+*/
+
+palindrome - when it reads the same front and back
+intialize two pointers left, right
+
+loop until right is greater than left:
+    check if there are any special characters:
+        skip-move that pointer forward
+    check if they are equal
+        move both the pointers forward
+    if not same:
+        call another validPalindrome function with either left + 1 or right - 1 and return its result:
+        if this is true, it wont run the later
+        if this is false, it will run the later condition
+return true
+*/
+//a    c    c a
+bool validPalindromeCheck(int l, int r, char* s){
+    while(l<r){
+        if(!isalnum(s[l])){
+            l++;
+        }
+        if(!isalnum(s[r])){
+            r--;
+        }
+        if(tolower(s[l]) == tolower(s[r])){
+            l++;
+            r--;
+        }
+        else{
+            return false;
+        }
+    }
+    return true; 
+}
+
+bool validPalindrome(char* s) {
+    int left = 0;
+    int right = strlen(s) - 1;
+
+    while(left<right){
+        
+        if(!isalnum(s[left])){
+            left++;
+        }
+        if(!isalnum(s[right])){
+            right--;
+        }
+        if(tolower(s[left]) == tolower(s[right])){
+            left++;
+            right--;
+        }
+        else if(tolower(s[left]) != tolower(s[right])){
+            return validPalindrome(left, right-1, s) || validPalindrome(left+1, right, s);  
+        }
+    }
+    return true;
+    
+}
