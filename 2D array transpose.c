@@ -48,5 +48,38 @@ int main() {
   return 0;
 }
 
+*/
 
+//2d square transpose using dynamic arr
+/*
+void transpose(int n, int (*arr)[n]){
+  
+  for(int i = 0; i < n; i++){
+    for(int j = i + 1; j < n; j++){
+      int temp = arr[i][j];
+      arr[i][j] = arr[j][i];
+      arr[j][i] = temp;
+    }
+  }
+
+   for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("%d", arr[i][j]);
+    }
+ }
+}
+
+int main() {
+  int n = 3;
+  int (*arr)[n] = malloc(n * n * sizeof(int));
+  
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      arr[i][j] = 1;
+    }
+  }
+  transpose(n, arr);
+  free(arr);
+  return 0;
+}
 */
