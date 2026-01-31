@@ -83,3 +83,38 @@ int main() {
   return 0;
 }
 */
+
+//2d dynamic rectangular transpose
+
+void transpose(int n, int m, int (*arr)[m]){
+
+  int (*matrix)[n] = malloc(m * n * (sizeof(int)));
+  
+  for(int i = 0; i < m; i++){
+    for(int j = 0; j < n; j++){
+      matrix[i][j] = arr[j][i];
+    }
+  }
+
+   for(int i = 0; i < m; i++){
+    for(int j = 0; j < n; j++){
+      printf("%d", matrix[i][j]);
+    }
+ }
+}
+
+int main() {
+  int n = 3;
+  int m = 2;
+  int (*arr)[m] = malloc(m * n * sizeof(int));
+  
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+      arr[i][j] = i * m + j + 1;
+    }
+  }
+
+  transpose(n,m, arr);
+  free(arr);
+  return 0;
+}
