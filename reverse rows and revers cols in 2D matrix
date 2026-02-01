@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+void reverseRows(int n , int (*arr)[n]){
+
+    for(int i = 0; i < n; i++){ // i is row, for every row we swap n elements
+      int left = 0;
+      int right = n - 1;
+
+      while(left < right){
+        int temp = arr[i][left];
+        arr[i][left] = arr[i][right];
+        arr[i][right] = temp;
+        left++;
+        right--;
+      }
+    }
+    /*
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < n; j++){
+        printf("%d", arr[i][j]);
+      }
+    }
+  */
+
+
+
+void reverseCols(int n, int (*arr)[n]){
+  
+  for(int j = 0; j < n; j++){ //cols are same, for every col we reverse rows
+    int left = 0;
+    int right = n - 1;
+    
+    while(left < right){
+      int temp = arr[left][j];
+      arr[left][j] = arr[right][j];
+      arr[right][j] = temp;
+      right--;
+      left++;
+    }
+  }
+
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      printf("%d", arr[i][j]);
+    }
+  }
+}
+
+int main(){
+  int n = 3;
+  int arr[3][3] = {{1,2,3}, {4,5,6}, {7,8,9}};
+  //reverseRows(n, arr);
+  reverseCols(n, arr);
+
+}
