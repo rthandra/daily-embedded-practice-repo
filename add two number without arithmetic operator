@@ -12,3 +12,47 @@ int main()
 
     return 0;
 }
+
+/*
+% - result and / - carry
+0010
+0011 
+0101
+0 + 1 = 1: 1 % 2 = 1, 1/2 = 0->carry
+1 + 1 = 2: 2 % 2 = 0, 2/2 = 1->carry
+1 + 0 + 0 = 1: 1 , 0
+intialize carry variable
+intialize outpur variable
+loop until a or b or carry exists:
+    loop until a exsits:
+        start with last bit - add to carry
+        shift a right   
+    loop until b exisits:
+        start with last bit - add to carry
+        shift b right
+    loop output bit to make space for next result:
+
+        now mod carry with 2 which will be output last bit
+        carry is equal to carry/2 for next iteration cycle
+    return output 
+
+edge cases: negative values, 32 bits, shifting 32 into signed value
+*/
+int getSum(int a, int b) {
+    unsigned ua = (unsigned)a; 
+    unsigned ub = (unsigned)b; 
+   unsigned carry = 0;
+   unsigned output = 0;
+   int i = 0;
+
+   while((ua  || ub || carry) && i < 32){
+    carry += ua  & 1;
+    carry += ub & 1;
+    ua  >>= 1;
+    ub >>= 1;
+    output |= (carry % 2) << i;
+    carry /=2;
+    i++;
+   }
+   return output;
+}
