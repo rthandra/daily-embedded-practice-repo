@@ -79,4 +79,50 @@ bool isValid(char* s) {
     else{
         return false;
     }
+
+/*
+intialize stack - LIFO
+loop until end of string:
+    if its opening:
+        push to stack
+    or if its closed:
+        compare the charactor to the last added character in the stack and check it its opening:
+            if it is - pop the last character
+            or if its not:
+                return false
+if the stack is empty: - popped all the values
+    return true
+
+EX: ']' - need to check this before checking tail with close bracket character
+*/
+  
+bool isValid(char* s) {
+    int len = strlen(s);
+    int stack[len];
+    int tail = 0;
+
+    for(int i = 0; s[i] != '\0'; i++){
+        if(s[i] == '(' || s[i] == '[' || s[i] == '{'){
+            stack[tail++] = s[i];
+        }
+        else if (tail == 0 ||  (s[i] == ')' && stack[tail-1] != '(') || (s[i] == '}' && stack[tail-1] != '{') || (s[i] == ']' && stack[tail-1] != '[')){
+            return false; //set tail to 0 and decrement? idk how to pop exactly 
+        }
+        else{
+            tail--;;
+        }
+    }
+    if(tail == 0){ //after popping all elements,
+        return true;
+    }
+    else{
+        return false;
+    }   
     
+}
+
+
+
+
+
+*/
