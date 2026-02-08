@@ -1,0 +1,58 @@
+Given 3 positives numbers a, b and c. Return the minimum flips required in some bits of a and b to make ( a OR b == c ). (bitwise OR operation).
+Flip operation consists of change any single bit 1 to 0 or change the bit 0 to 1 in their binary representation.
+
+Input: a = 2, b = 6, c = 5
+Output: 3
+Explanation: After flips a = 1 , b = 4 , c = 5 such that (a OR b == c)
+
+/*
+OR has no carry and no cross-bit dependency, so the problem decomposes perfectly into per-bit decisions.
+
+0 -> two flips or 1 flip if either a or b is 1
+1 -> one flip
+
+intialize width - edge case if c - 0001 but b is 1000 and a = 0001, you need still convert MSB of b so you cant depend just on c length
+loop until a or b or width exists:
+OR lsb of a and b and compare with with lsb of c:
+    if not same:
+    check if its 1 or 0 
+    if its 1:
+        flip either a or b LSB
+    if its 0:
+        flip both the bits of a and b
+    increment count here
+    right shift a, b, c, width
+return count
+
+edge cases:
+a = 1000, b = 0000, c = 0000
+c = 0001, b = 1000, c = 0001
+if bit is 1: one flip is enough
+if bit is 0: a, b can be 0 1 - only flip
+if bit is 0: a, b both 0 0 - two flips needed
+*/
+
+int minFlips(int a, int b, int c){
+    int count = 0;
+
+    while(c || a || b){
+        if(((a & 1) | (b & 1)) != (c & 1)){
+            if(c & 1){
+                count++;
+            }
+            else if(!(c & 1)){
+                if((a & 1) && (b & 1)){
+                    count = count + 2;
+                }
+                else{  //if both a and b is 0
+                    count++;
+                }
+            }
+        }
+        a >>= 1;
+        b >>= 1;
+        c >>= 1;
+    }
+    return count;
+
+}
