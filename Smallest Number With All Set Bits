@@ -1,0 +1,19 @@
+You are given a positive number n.
+
+Return the smallest number x greater than or equal to n, such that the binary representation of x contains only set bits
+
+/*
+calculate width of number
+*/
+int smallestNumber(int n) {
+    //int width = (1<<n) - 1;
+    //n = 5
+    int width = 0; 
+    while(n){//
+        width <<= 1;//,, 0010, 0110
+        width |= 1;//0001, 0011, 0111
+        n >>= 1;//0010, 0001,000
+    }
+    return width;
+    
+}
