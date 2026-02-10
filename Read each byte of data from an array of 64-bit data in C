@@ -1,0 +1,22 @@
+
+/*
+Read each byte of data from an array of 64-bit data in C
+8 bit pointer and while printng move 1 byte
+*/
+
+int main(){
+
+  uint64_t arr[] = {1,2,3,4}; //[00000001, 00000002, 00000003, 00000004]
+  int size = sizeof(arr)/sizeof(arr[0]);
+  
+  uint8_t *ptr = (uint8_t*)&arr; //8 bit pointer 
+
+  for(int i = 0; i < size; i++){
+    printf("%d\n", ptr[i * sizeof(arr[i])]); //need to move 8 bits to see next element in arr
+  }
+  printf("%d\n", sizeof(arr[0])); //8 bytes
+  printf("%d\n", sizeof(ptr[0])); //1 bytes
+
+  return 0;
+
+}
