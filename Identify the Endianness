@@ -1,0 +1,14 @@
+
+/*
+Identify the Endianness with an example code in C 
+*/
+
+
+int main(){
+  int n = 2;
+  uint8_t *p = (uint8_t*)&n;
+
+  printf("%d \n", *(p+3));
+  printf("%d", *(p));
+
+}
