@@ -1,0 +1,29 @@
+Swap alternate bytes in a number and bits in a number
+ex: 0x1234
+1. swap alternative byte:
+  3412
+2. swap alternative bits:
+  every bit with its neighbouring bit
+  0011     0100  0001 0010
+ 15141312 111098 7654 3210
+
+ so 0 pos - 1
+  2-3...
+
+intialize number
+
+mask upper bit and lower bit and right, left shift them
+make odd, even mask right left shift them by 1 
+
+*/
+
+
+int main() {
+  int n = 0x1234;
+
+  n = ((0xFF00 & n) >> 8) | ((0x00FF & n) << 8);
+  n = ((n & 0x5555) << 1) | ((n & 0xAAAA)>>1);
+
+  printf("%X", n);
+
+}
