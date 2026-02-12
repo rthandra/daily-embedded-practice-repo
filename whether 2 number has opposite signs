@@ -1,0 +1,56 @@
+
+/*
+Find whether 2 number has opposite signs: 
+
+-3 and -4 - same
+3 and -9 - opp
+
+check the msb of both the numbers
+if same:
+  same
+else:
+ opp
+
+ bit trick: xor and check if its greater than 0
+
+ 0000 0011
+ 0000 0010
+ xor will be > 0 - same
+
+ 1110 0001
+ 1110 0000
+ xor > 0 same
+ 1110 0001
+ 0000 1000
+ xor < 0 not same
+ better if we dont know length or cant shift bit
+
+ -0 does not exist in latest computers
+
+*/
+
+int main(){
+
+  int8_t a = 3;
+  int8_t b = -4;
+
+  if((a ^ b ) < 0){
+    printf("not same");
+  }
+  else{
+    printf("same");
+  }
+
+
+  /*
+    if(((a >> 7) & 1 )== ((b >> 7) & 1)){
+    printf("same");
+  }
+  else{
+    printf("opp");
+  }
+  */
+
+
+  return 0;
+}
