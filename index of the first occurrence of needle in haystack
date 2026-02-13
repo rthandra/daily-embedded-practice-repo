@@ -19,9 +19,7 @@ Constraints:
 
 1 <= haystack.length, needle.length <= 104
 haystack and needle consist of only lowercase English characters.
-
-
-
+time complexity - O(nxm)
 
 /*
 intialize three pointers: h, n 
