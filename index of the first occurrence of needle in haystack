@@ -1,0 +1,74 @@
+
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Example 2:
+
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+Explanation: "leeto" did not occur in "leetcode", so we return -1.
+ 
+
+Constraints:
+
+1 <= haystack.length, needle.length <= 104
+haystack and needle consist of only lowercase English characters.
+
+
+
+
+/*
+intialize three pointers: h, n 
+
+loop until end of haystack:
+    if h and n are same:
+        loop until n exists:
+            if not equal:
+                exit loop
+
+        return i
+    else:
+        increment
+        set n to 0
+
+    edge case:
+        1. if string empty
+        2. if haystack is less than needle
+
+        ex: aba, aa
+*/
+
+int strStr(char* haystack, char* needle) {
+    int h = 0;
+    int n = 0;
+    int len = strlen(haystack);
+
+    if(strlen(haystack) < strlen(needle)){
+        return -1;
+    }
+    // ex: abaa, aa, ex:aaab,aab
+    for(int i = 0; i < len; i++){
+        h = i;
+        if(haystack[h++] == needle[n++]){
+            while(needle[n] != '\0' && haystack[h] != '\0'){
+                if(haystack[h] != needle[n]){
+                    break;
+                }
+                h++;
+                n++;
+            }
+            if(needle[n] == '\0'){ 
+                return i;
+            }
+        }
+        n = 0;
+
+    }
+    return -1;
+}
