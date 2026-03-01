@@ -1,5 +1,12 @@
+
+
+
 void absol(int n){
-    
+
+    //if n is smallest negative number, you cannot do n = -1 * n; it will cause overflow
+    //do -2^31 =  2^31 - 1 
+
+
     if(n>0){
         printf("n = %d\n", n);
     }
