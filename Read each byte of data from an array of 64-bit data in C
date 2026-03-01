@@ -12,7 +12,7 @@ int main(){
   uint8_t *ptr = (uint8_t*)&arr; //8 bit pointer 
 
   for(int i = 0; i < size; i++){
-    printf("%d\n", ptr[i * sizeof(arr[i])]); //need to move 8 bits to see next element in arr
+    printf("%d\n", ptr[i * sizeof(arr[i])]); //need to move 8 byte to see next element in arr
   }
   printf("%d\n", sizeof(arr[0])); //8 bytes
   printf("%d\n", sizeof(ptr[0])); //1 bytes
