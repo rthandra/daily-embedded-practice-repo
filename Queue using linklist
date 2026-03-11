@@ -1,0 +1,76 @@
+
+typedef struct Node{
+  int val;
+  struct Node *next;
+} Node;
+
+Node *head = NULL;
+Node *tail = NULL;
+
+Node *NodeInit(int data){
+  Node *newNode = malloc(sizeof(Node));
+  newNode->val = data;
+  newNode->next = NULL;
+  return newNode;
+}
+
+int isEmpty(){
+  if(head == NULL){
+    return -1;
+  }
+}
+
+void Enqueue(int data){
+  Node *newNode = NodeInit(data);
+  if(head == NULL && tail == NULL){ //new list
+    head = tail = newNode;
+  }
+  else{               
+    tail->next = newNode; //set tail's next as newnode
+    tail = tail->next; // move tail
+  }
+}
+
+void print(){
+  Node *temp = head;
+  while(temp){
+    //printf("%d", temp->val);
+    temp = temp->next;
+  }
+}
+
+int Dequeue(int *popped){
+  Node *temp = head; //1234
+  if(isEmpty() == -1){
+    return -1;
+  }
+  *popped = temp->val;
+  head = head->next;
+  /* danling pointer */
+  if(head == NULL){ //if you want to add new values after dequeing, tail needs to be point somewhere valid, because you remove the last node tail was pointing to and reconnecting that with a new node is invalid so we make sure while dequeing that when all nodes are removed I set tail to NULL for safe enquing
+    tail = NULL;
+  }
+  free(temp);
+  return *popped;
+}
+
+int main(){
+
+Enqueue(1);
+Enqueue(2);
+Enqueue(3);
+Enqueue(4);
+//Enqueue(5);
+//print();
+
+int popped = 0;
+
+while(Dequeue(&popped) != -1){
+  //printf("%d\n", popped);
+}
+Enqueue(5);
+while(Dequeue(&popped) != -1){
+  printf("%d", popped);
+}
+  return 0;
+}
