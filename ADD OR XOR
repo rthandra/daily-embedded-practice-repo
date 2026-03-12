@@ -1,0 +1,90 @@
+#include <stdio.h>
+
+/*
+ou are given two non-negative integers 𝑎,𝑏
+. You can apply two types of operations on 𝑎
+ any number of times and in any order:
+
+𝑎←𝑎+1
+. The cost of this operation is 𝑥
+;
+𝑎←𝑎⊕1
+, where ⊕
+ denotes the bitwise XOR operation. The cost of this operation is 𝑦
+.
+Now you are asked to make 𝑎=𝑏
+. If it's possible, output the minimum cost; otherwise, report it.
+
+Input
+Each test contains multiple test cases. The first line contains the number of test cases 𝑡
+ (1≤𝑡≤104
+). The description of the test cases follows.
+
+The only line of each test case contains four integers 𝑎,𝑏,𝑥,𝑦
+ (1≤𝑎,𝑏≤100,1≤𝑥,𝑦≤107
+) — the two integers given to you and the respective costs of two types of operations.
+
+
+
+
+*/
+/*
+intuition:
+
+xor - 2 , a + 1 = 1
+even no: 0000, 0010, 0100, 0110, 1000 -> LSB is always 0
+odd no: 0001, 0011, 0101, 0111 -> LSB is always 1
+
+even xor-> 0010 ^ 0001 = 0011 -> always increases number by 1
+odd xor -> 0011 ^ 0001 = 0010 -> always decreases number by 1
+ + 1 anyways only adds
+
+CASE 1: if (a>b) 0011 0010 - so i xor  0011 ^ 0001 = 0010, we can decrement only once if its not equal by then we just return -1
+CASE 2 part a: if (a < b) 0011 0100 - 3 is odd so xor will reduce its no, we have to add + 1
+    part b:  if (a < b) 0010 0100 - 2 is even so both xor and + 1 will increase so choose which ever operation is cheaper
+CASE 3: then dont do anything return 0
+*/
+
+int main() {
+  int a = 3; //0100
+  int b = 1; //1000
+  int xorCost = 1;
+  int addCost = 2;
+  int min = 0;
+
+  if(a == b){
+    printf("%d", min);
+    return 0;
+  }
+  
+  if(a > b){
+    if((a ^ 1) != b){
+      printf("-1");
+      return 0;
+    }
+    else{
+      printf("1");
+      return 0;
+    }
+  }
+
+  while(a != b){
+    if(a % 2 == 0){
+      if(addCost < xorCost){
+        a += 1;
+        min += addCost;
+      }
+      else{
+        a ^= 1;
+        min += xorCost; //0101, min = 1, 0111, min = 4
+      }
+    }
+    else{
+      a += 1; //0110, 1000
+      min += addCost; //min = 3, min = 5
+    }
+  }
+
+  printf("%d", min);
+  return 0;
+}
