@@ -1,0 +1,68 @@
+#include <stdio.h>
+/*
+
+Circular buffer copy without overlap (forward and backward copy) 
+given: one circular buffer
+
+[A B C D E F]
+forward copy:
+src - pos[3]
+des - pos[0]
+
+pos[3] - pos[0] [DBCDEF]
+pos[4] - pos[1] [DECDEF]
+pos[5] - pos[2] [DEFDEF]
+
+there is no problem with copying, memory is not getting corrupted its safely able to copy when src index > des index
+
+backward copy:
+src - pos[0]
+des - pos[3]
+
+src index < des index but it can still be safely copied either forward or backward
+
+overlapping:
+
+src[3] 
+des[2]
+
+you can still do forward copy safely because src is moving forward so data isnt get corrupted
+
+src[0]
+des[1]
+
+you cannot do forward copy safely because src needs to move forward but des is there so data will be corrupted so we use backward copy
+
+
+so if src > des then we use forward copy
+des > src then backward copy
+
+what is backward copy?
+
+u simply start from the last index to first index instead of first index to last
+*/
+
+void safeCopy(int *buffer, int *src, int *des, int copyLen, int arrlen){
+  int srcIndex = src - buffer;
+  int desIndex = des - buffer;
+
+  if(src > des){ //if src address is > dest address - forward copy
+    for(int i = 0; i < copyLen; i++){
+     buffer[(desIndex + i) % arrlen] = buffer[(srcIndex + i) % arrlen];
+    }
+  }
+  else{
+     for(int i = copyLen; i <= 0; i--){
+      buffer[(desIndex + i) % arrlen] = buffer[(srcIndex + i) % arrlen];
+    }
+  }
+}
+
+int main() {
+  
+  int buffer[] = {1,2,3,4,5};
+  safeCopy(buffer, &buffer[0], &buffer[2], 3, 5 );
+  //&buffer is pointer to the entire array - buffer + 1 moves by the entire array + 1
+  //buffer is pointer to first element in the array, buffer + 1 moves to the second element
+  return 0;
+}
