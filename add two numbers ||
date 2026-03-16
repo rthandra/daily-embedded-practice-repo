@@ -1,0 +1,84 @@
+3 - 4 - 2 - 7
+4 - 6 - 5
+
+reverse l1 l2  
+l1: 3 4 2 7
+l2: 4 6 5
+funct init - create node
+add func 
+sum carry
+
+while l1, l2 or carry exists
+    if(l1)
+        add to sum
+    if(l2)
+        add to sum
+    add func(sum % 10 + carry)  7 % 10 + 0 
+    carry = sum+ carry/10
+
+reverse l3
+ */
+
+struct ListNode* createNode(int data){
+    struct ListNode *newNode = malloc(sizeof(struct ListNode));
+    newNode->val = data;
+    newNode->next = NULL;
+    return newNode;
+} 
+
+void add(struct ListNode **head, int sum){
+
+    struct ListNode *newNode = createNode(sum);
+    if(*head == NULL){
+        *head = newNode;
+    }
+    else{
+        struct ListNode *temp = *head;//[1,2]
+        while(temp->next){
+            temp = temp->next; // 1->2->3
+        }
+        temp->next = newNode;
+    }
+
+}
+
+struct ListNode *reverse(struct ListNode **head){
+    struct ListNode *prev = NULL;
+    struct ListNode *curr = *head;
+
+    while(curr){
+        struct ListNode *Next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = Next;
+    }
+    return prev;
+
+}
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+
+    l1 = reverse(&l1);
+    l2 = reverse(&l2);
+    struct ListNode* head = NULL;
+    int carry = 0;
+
+    while(l1 || l2 || carry){
+        int sum = 0;
+        if(l1){ //9 9
+            sum += l1->val; //9, 9
+            l1 = l1->next;// 9 ->null
+        }
+
+        if(l2){ //9
+            sum += l2->val; 
+            l2 = l2->next; // null
+        }
+
+        add(&head, (sum + carry) % 10);  
+        carry = (sum + carry)/10;
+    }
+    head = reverse(&head); 
+    return head;
+
+}
