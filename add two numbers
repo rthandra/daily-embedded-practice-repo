@@ -1,0 +1,45 @@
+struct ListNode *createNode(int data){
+    struct ListNode *newNode = malloc(sizeof(struct ListNode));
+    newNode->next = NULL;
+    newNode->val = data;
+
+    return newNode;
+}
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+    struct ListNode dummy;
+    struct ListNode *prev = &dummy;
+    int sum = 0;
+    int carry = 0;
+
+    while(l1 && l2 ){
+        sum = l1->val + l2->val + carry; //7
+        struct ListNode *newNode = createNode(sum % 10);
+        prev->next = newNode;
+        carry = sum/10;
+        l1 = l1->next;
+        l2 = l2->next;
+        prev = prev->next;
+    }
+
+    while(l1){
+        sum = l1->val % 10 + carry;
+        struct ListNode *newNode = createNode(sum%10);
+        carry = sum / 10;
+        prev->next = newNode;
+        prev = prev->next;
+        l1 = l1->next;
+    }
+    while(l2){
+        sum = l2->val % 10 + carry;
+        struct ListNode *newNode = createNode(sum%10);
+        carry = sum / 10;
+        prev->next = newNode;
+        prev = prev->next;
+        l2 = l2->next;
+    }
+    if(carry){
+        prev->next = createNode(carry);
+        prev = prev->next;
+    }
+    return dummy.next;
+}   
