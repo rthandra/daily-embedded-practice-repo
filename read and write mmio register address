@@ -1,0 +1,43 @@
+/*
+write a read and write function that takes register map address, it has bit fields
+ given : address, width, start bit
+*/
+#define REG *((volatile uint32_t*)0x40000000)
+
+void read(int start, int width){
+  uint16_t bitmask;
+  if(width >= 16){
+    bitmask = 0xFFFF;
+  }
+  else{
+    bitmask = ((1 << width) - 1) << start;
+  }
+  uint16_t read = 0;
+  //uint16_t bitmask = 0;
+/*
+  while(width != 0){ //3,2,1
+    bitmask <<= 1; //0000, 0010, 0110
+    bitmask |= 1; //0001, 0011, 0111
+    width--; //2, 1, 0
+  }
+  bitmask <<= start;
+*/
+  read = (REG & bitmask) >> start;
+}
+
+void write(int start, int width, uint16_t write){
+  uint16_t bitmask = 0;
+  uint16_t writeMask = 0;
+  if(width >= 16){
+    bitmask = 0xFFFF;
+    writeMask = (0xFFFF & write) << start;
+  }
+  else{
+    bitmask = (( 1u << width) - 1) << start; 
+    writeMask =  (((1u << width) - 1) & write) << start;
+  }
+
+  REG = (REG & ~(bitmask));
+  REG =  REG | writeMask;
+
+}
