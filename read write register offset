@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
+
+/* part 1: write a read and write function that takes register map address, it has bit fields
+ given : address, width, start bit
+
+ part 2: same as part one given offset instead
+*/
+
+uint16_t read(volatile uint16_t *address, int start, int width, int offset){
+  uint16_t bitmask, read = 0;
+  if(width >= 16){
+    return *address;
+  }
+  else{
+    bitmask = ((1u<<width) - 1) << start;
+  }
+
+  uint16_t finalAddress = *(address + offset);
+  read = (finalAddress & bitmask) >> start;
+  return read;
+}
+
+uint16_t *write(volatile uint16_t *address, int start, int width, int offset, int write){
+  uint16_t bitmask, writeMask = 0;
+  if(width >= 16){
+    *address = write;
+    return address;
+  }
+  else{
+    bitmask =((1u << width) - 1) << start;
+    writeMask =  (((1u<<width) - 1) & write ) << start;
+  }
+
+  *(address + offset) &= ~(bitmask);
+  *(address + offset) |= writeMask;
+
+  return address + offset;
+}
