@@ -1,0 +1,20 @@
+int main(){
+
+  char s[] = " abc rhfk dwside    fgdfrg  ";
+  int slow = 0;
+  int fast = 0;
+
+  while(s[fast] != '\0'){
+    if(s[fast] == ' '){
+      fast++;
+    }
+    else{
+      s[slow] = s[fast];
+      fast++;
+      slow++;
+    }
+  }
+  s[slow] = '\0';
+  printf("%s", s);
+  return 0;
+}
