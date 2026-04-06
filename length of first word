@@ -1,0 +1,19 @@
+
+int main(){
+
+  char s[] = "h";
+  int right = 0;
+  int count = 0;
+
+  while(s[right] != '\0' && s[right] == ' '){
+    right++;
+  }
+
+  while (s[right] != '\0' && s[right] != ' '){
+    right++;
+    count++;
+  }
+
+  printf("%d", count);
+  return 0;
+}
