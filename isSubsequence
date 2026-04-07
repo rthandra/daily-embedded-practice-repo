@@ -1,0 +1,37 @@
+/*
+edge cases: 
+- if string s > string t - false
+- if either is empty 
+
+
+outer loop until s:
+    inner look until t:
+        check if index does not exists:
+            return false
+return true
+
+time complexity - O(n + m) - doesnt loop m all the way - O(n)
+*/
+
+bool isSubsequence(char* s, char* t) {
+    int lens = strlen(s);
+    int lent = strlen(t);
+    int k = 0;
+    int j = 0;
+    if(lens>lent){
+        return false;
+    }
+    for(int i = 0; i < lens; i++){  
+        for(j = k; j < lent; j++){
+            if(s[i] == t[j]){
+                k = j+1;
+                break;
+            }
+        }
+
+        if(j == lent){
+            return false;
+        }
+    }
+    return true;
+}
