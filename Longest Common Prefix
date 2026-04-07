@@ -1,16 +1,41 @@
+/*
+
+array of pointers 
+
+* - flower
+* - flow
+* - flight
+
+check if all the powers are pointing to same char
+if yes add it to output string
+move pointers - repeat until one of them is end of array
+
+edge case: if string is empty
+
+time complexity - outer loop - 0(n) where n is length of each string
+                - inner loop - 0(m) where m is the number of strings
+                so O(n * m)
+
+space complexity - output string has length of n where n is length of each string so O(n)
+
+*/
+
 char* longestCommonPrefix(char** strs, int strsSize) {
 
-    for(int j = 0; strs[0][j] != '\0'; j++){ //j moves through characters in first substring
-        char c = strs[0][j]; //refering to the first substring currently
-        for(int i = 1; i < strsSize; i++){ //iterating through substrings strs[0], strs[1]....
-            if(strs[i][j] != c || strs[i][j] == '\0'){ //if the first substring and after is not equal to the first substring or end of string
-                strs[0][j] = '\0'; //end the first string there to return the common prefix if any
-                return strs[0];
+    int len = strlen(strs[0]);
+    char *output = malloc(len + 1); //if len = 0, you need to still allocate 1 byte for '\0'
+    int k = 0;
+    
+    for(int j = 0; j < len; j++){
+        for (int i = 1; i < strsSize; i++){
+            if(strs[i][j] != strs[0][j]){
+                output[k] = '\0';
+                return output;
             }
         }
-
+        output[k++] = strs[0][j];
     }
-    
-    return strs[0]; //if the entire substring of arr[0] is equal to the rest of the other substrings
+    output[k] = '\0';
+    return output;
     
 }
