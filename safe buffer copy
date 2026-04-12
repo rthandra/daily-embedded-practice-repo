@@ -1,0 +1,15 @@
+
+void safe_copy(void *src, void *dest, int src_len, int des_len){
+  
+  int *s = (int*)src;
+  int *d = (int*)dest;
+
+  while(src_len > 0 && des_len > 0){
+    *d = *s;
+    d++;
+    s++;
+    src_len--;
+    des_len--;
+  }
+
+}
