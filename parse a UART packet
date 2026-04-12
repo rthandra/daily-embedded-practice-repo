@@ -1,0 +1,36 @@
+/*
+
+Parse: [SYNC:1][LEN:2][CMD:1][PAYLOAD:n][CRC:2] - UART
+
+SYNC - Start address of the buffer that you agreed to
+*/
+
+typedef struct{
+  uint8_t sync;
+  uint16_t len;
+  uint8_t cmd;
+  uint8_t *payload; //payload is n bytes, pointer to the payload
+  uint16_t crc;
+}packet_t;
+
+bool parse(uint8_t *buff, uint16_t len, packet_t *p){
+  /* sync */
+  if(buff[0] != 0xFF){
+    return false;
+  }
+  p->sync = buff[0];
+
+  /* len */
+  p->len = (buff[1] << 8) | buff[2];  //buffer stores only 8 bytes, but len is 16 bytes so you need the high and low byte
+  
+  /* cmd */
+  p->cmd = buff[3];
+
+  /*  payload */
+  p->payload = &buff[4]; //payload pointer to address of the payload in the buffer
+
+  /*  crc  */
+  p->crc = buff[4 + p->len ] << 8 | buff[4 + p-> len + 1]; //len is the length of the payload, use that to acccess crc byte
+
+  return true;
+}
