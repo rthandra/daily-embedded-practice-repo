@@ -1,0 +1,10 @@
+void write_to_buffer(uint8_t *buf, uint16_t seq, uint32_t value){
+
+  buf[0] = 0xFF; //sync
+  buf[1] = (seq >>8) & 0xFF; //high byte
+  buf[2] = (seq & 0xFF); //low byte
+  buf[3] = (value >> 24) & 0xFF;
+  buf[4] = (value >> 16) & 0xFF;
+  buf[5] = (value >> 8) & 0xFF;
+  buf[6] = (value & 0xFF);
+}
