@@ -1,0 +1,28 @@
+
+
+int lookup(int n){
+
+  static int arr[255];
+
+  arr[0] = 0;
+  arr[1] = 128;
+
+  for(int i = 2; i < 255; i++){
+    arr[i] = (arr[i >> 1] >> 1)| ((i & 1) << 7); 
+    //strip the last bit, you have solved for the smaller version, stick the last bit which differs in the MSB
+  }
+
+  for(int k = 0; k < 255; k++){
+    if(n == k){
+      return arr[k];
+    }
+  }
+  return 0;
+}
+
+
+int main(){
+
+  int reverse = lookup(3);
+  printf("%d", reverse);
+}
