@@ -1,5 +1,33 @@
+//bitwise method 1:
+
+bool sign(int32_t n){ //o(1)
+
+  if(n >> 31 & 1){
+    return 1;
+  }
+  else{
+    return 0;
+  }
+}
+
+void absNumber(int32_t n){
+   if(sign(n)){
+    n = ~(n) + 1;
+   }
+   printf("%d", n);
+
+}
+
+int main(){
+  int32_t n = 888;
+  absNumber(n);
+
+  return 0;
+}
 
 
+
+//method 2
 
 void absol(int n){
 
@@ -21,3 +49,5 @@ int main(){
     absol(2222);
     return 0;
 }
+
+
