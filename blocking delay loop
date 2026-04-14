@@ -1,0 +1,24 @@
+/*
+Implement a blocking delay loop that counts down from an integer n to 0.
+The loop must not be optimized away by the compiler.
+
+Return the final value of the counter.
+
+This mimics bare-metal delay routines used when hardware timers are unavailable.
+
+Input: An integer n.
+Output: 0 after the delay completes.
+
+Constraints:
+- Use a busy-wait loop.
+- Ensure the loop variable is not optimized away.
+- No library delay functions.
+*/
+
+int delay_loop(int n){
+  volatile counter = n;
+  while(counter){
+    counter--;
+  }
+  return counter;
+}
