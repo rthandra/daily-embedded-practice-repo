@@ -1,0 +1,79 @@
+/*
+questions: power of 2 or anything? //o(pow) -> loop runs pow times
+*/
+
+/*
+int main(){  //not efficient yet - o(n)
+
+  int n = 3;
+  int pow = 2;
+  int temp = n;
+
+  while(pow>0){
+    n = n * temp; 
+    pow--;
+  }
+
+  printf("%d", n);
+
+  return 0;
+}
+*/
+
+//method 2: 
+
+/*
+
+even powers of halves squared up:
+
+  ex: 3 ^ 2  = 3 ^ (2/2) * 3 ^(2/2)
+      3 ^ 4 =  3 ^ (4/2) * 3 ^(4/2)
+
+odd powers are cummilation of even powers + extra
+
+  ex: 3 ^ 3 = 3 ^ [3-1] ^ 3
+
+*/
+
+/*
+void power(int n, int pow){
+
+  if(pow & pow - 1){ //even pow
+    n = n ^ (n/2) * n ^ (n/2) * n;
+  }
+  else{ //even
+    n = n ^ (n-1) * n;
+  }
+
+  printf("%d", n);
+}
+
+int main(){
+  power(3, 4);
+}
+*/
+
+/*time complexity: o(log(pow))
+recursion is a loop so not o(1)
+every time its halved when its even so o(long(x))
+u loop pow times so o(log(pow))
+*/
+int power(int n, int pow){ //2,2
+
+  if(pow == 0){
+    return 1; //3. returns 1 to 2
+  }
+
+  if((pow % 2) == 0){
+    int half =  power(n, pow/2); // 1. n * (2, 1) -> 2 * 2 = 4
+    return half * half; //n ^ 4 = n ^ 2 * n^2
+  }
+  else{
+    return n * power(n, pow-1); //2.  n * (2, 0), 2 * 1 = 2 will return 2 to step 1
+  }
+   
+}
+int main(){
+ int res =  power(3, 4);
+ printf("%d", res);
+}
