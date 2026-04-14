@@ -1,0 +1,9 @@
+void unset(int n){ //0000 0010
+  int mask = ((~n) + 1) & n; //0000 0010
+  n ^= mask;// 
+  printf("%d", n);
+}
+
+int main(){
+  unset(3);
+}
