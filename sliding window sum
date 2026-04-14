@@ -1,0 +1,24 @@
+void sliding_window(int *arr, int size){ //[0000]
+  int window = 2;
+  int sum = 0;
+  //1. create a window
+  for(int i = 0; i < window; i++){
+    sum += arr[i]; //1 + 2 = 3
+  }
+
+  //2. slide the winfow
+  for(int j = 0; j <= size - window; j++){ //size - window depicts how many windows you can fit in then arr
+    printf("%d\n", sum); //3
+
+    //slide the window
+    if((j+ window) < size) {
+       sum = (sum - arr[j]) + (arr[j + window]); 
+    }
+   
+  }
+}
+int main(){
+  int arr[] = {1,2,2,2};
+  int size = 4;
+  sliding_window(arr, size);
+}
