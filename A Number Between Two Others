@@ -1,0 +1,65 @@
+
+You are given two integers 𝑥
+ and 𝑦
+ such that 𝑦>𝑥
+ and 𝑦mod𝑥=0
+ (that is, 𝑦
+ is divisible by 𝑥
+).
+
+Your task is to determine whether there exists an integer 𝑧
+ such that
+
+𝑧
+ lies between 𝑥
+ and 𝑦
+ (that is, 𝑥<𝑧<𝑦
+);
+𝑧
+ is divisible by 𝑥
+ (that is, 𝑧mod𝑥=0
+);
+𝑦
+ is not divisible by 𝑧
+ (that is, 𝑦mod𝑧≠0
+).
+
+//brute force - 
+// To execute C, please define "int main()"
+/* brute force:
+2 8
+elements between them / n = 8 - 2 = 6
+
+loop until 6 (i shd start with 2):
+  if the number is divisible by 2 and not divisible by 8:
+    return true 0- o(n)
+  else false
+*/
+int main() {
+  long long x = 3; //6 , 9, 12, 15, 18, 21
+  long long y = 27;
+  long long size = y-x;
+  for (long long i = x + 1; i <= size; i ++) {
+    if((i % x) == 0 && (i % y)!= 0){
+      printf("true");
+      return 0;
+    }
+  }
+  printf("false");
+  return 0;
+}
+
+//optimized: z is definetly divisble by x so it has to be multiples of x so we only check thosr instead of all numbers - time complexity will be o(y/x) - no of jumps to reach y
+int main() {
+  long long x = 3; //6 , 9, 12, 15, 18, 21
+  long long y = 27;
+  long long size = y-x;
+  for (long long i = 2 * x; i <= size; i += x) { //7 times, starts at next multiple of x and loop x+ times
+    if((i % y)!= 0){
+      printf("true");
+      return 0;
+    }
+  }
+  printf("false");
+  return 0;
+}
