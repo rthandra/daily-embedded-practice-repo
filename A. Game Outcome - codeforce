@@ -1,0 +1,23 @@
+int main(){
+  int arr[2][2] = {{1,2}, {3,4}}; 
+  int size = sizeof(arr)/sizeof(arr[0]);
+  int count = 0;
+
+  for(int k = 0; k < size; k++){ 
+      int rowSum = 0;
+      int colSum = 0;
+    for(int j = 0; j < size; j++){ 
+      rowSum += arr[k][j]; 
+    }
+    for(int i = 0; i < size; i++){
+      colSum += arr[i][k]; 
+    }
+
+    if(colSum > rowSum){
+      count += 2;
+    }
+  }
+
+  printf("count = %d", count);
+  return 0;
+}
