@@ -1,0 +1,31 @@
+/*
+bruteforce - o(n^2) - time complexity
+*/
+char* firstPalindrome(char** words, int wordsSize) {
+    for(int i = 0; i < wordsSize; i++){
+        int l = 0;
+        int r = strlen(words[i]) - 1;
+        int flag = 0; //
+
+        while(l < r){
+            if(!isalnum(words[i][l])){
+                l++;
+            }
+            else if(!isalnum(words[i][r])){
+                r--;
+            }
+            else if(words[i][l] == words[i][r]){
+                l++;
+                r--;
+            }
+            else{
+                flag = 1; //
+                break;
+            }
+        }
+        if(flag == 0){ //
+            return words[i];
+        }
+    }
+    return "";
+}
