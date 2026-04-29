@@ -1,0 +1,126 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+/*
+
+loop arr:
+    check if index is greater than to the elements in left: 
+        function return t/f
+    if true:
+        add the index to arr
+    if false:
+        write function to check if element is greater than right elements
+    if true:
+        add index to arr
+
+    return arr - o(n^2)
+*/
+/*
+bool validElementLeft(int size, int valid_element, int *nums){
+    for(int i = 0; i < size; i++){
+        if(nums[i] >= valid_element){
+            return false;
+        }
+    }
+    return true;
+}
+bool validElementRight(int index, int valid_element, int numSize, int* nums){
+    for(int i = index + 1; i < numSize; i++){ 
+        if(nums[i] >= valid_element){
+            return false;
+        }
+    }
+    return true;
+}
+int* findValidElements(int* nums, int numsSize, int* returnSize) {
+  int *arr = malloc(numsSize *sizeof(int));
+  int k = 1;
+  arr[0] = nums[0]; //add first element
+                    
+   for(int i = 1; i < numsSize - 1; i++){
+       int left_result = validElementLeft(i, nums[i], nums);
+       if(left_result == 1){
+           arr[k++] = nums[i]; //[1,2,4,3]
+       }
+       else{
+           int right_result = validElementRight(i, nums[i], numsSize, nums);
+           if(right_result == 1){
+             arr[k++] = nums[i];
+           }
+       }  
+   }
+    if(numsSize > 1){
+        arr[k++] = nums[numsSize-1]; //add last element
+    }
+ 
+    *returnSize = k;
+    return arr;
+}
+
+*/
+
+/*
+
+optimized - track max val from left and right
+
+intialize maxleft, maxright, result arr, index k
+set maxleft as first index, maxright as last index
+
+add first element
+loop until nums - 1:
+
+    check if current index is greater than max left:
+        add index to result arr
+        update max left
+    else:
+        check if current index greater than max right:
+            add index to result arr - u cant do this for max right cause iterating from left to right so max left is easier to compute
+
+for max right:
+    precompute maxright for every index and store it in a seperate function
+
+add last element - O(n) time , O(n + n) = O(n) space
+*/
+
+
+int* findValidElements(int* nums, int numsSize, int* returnSize) {
+    int *resArr = malloc(numsSize * sizeof(int));
+    int k = 1;
+    int maxLeft = nums[0]; //1
+    resArr[0] = nums[0]; //[1]
+    //[1,2,4,2,3,2]
+    int *maxRight_Arr = malloc(numsSize * sizeof(int));
+        int maxRight = nums[numsSize - 1]; //2
+        maxRight_Arr[numsSize - 1] = -1;  //[-1]
+        maxRight_Arr[0] = -1;
+
+        for(int i = numsSize - 2; i > 0; i--){
+            maxRight_Arr[i] = maxRight;  //[-1, 4, 3, 3, 2,-1]
+
+            if(nums[i] > maxRight){
+                maxRight = nums[i]; //4
+            }
+        }
+
+    for(int i = 1; i < numsSize - 1; i++){
+        if(nums[i] > maxLeft){ 
+            resArr[k++] = nums[i]; 
+            maxLeft = nums[i]; //4
+        }
+        else{ //dont know how i would calculate max right
+            if(nums[i] > maxRight_Arr[i]){
+                resArr[k++] = nums[i]; //[1,2,4,3]
+            }
+        }
+    }
+
+    if(numsSize > 1){
+        resArr[k++] = nums[numsSize-1];
+    }
+    *returnSize = k;
+    return resArr;
+}
+
+
+
+
