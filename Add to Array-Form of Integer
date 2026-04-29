@@ -1,0 +1,49 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+
+ /*
+
+cases when u want to extend your array:
+    1. if k > numSize, [0], k = 23
+    2. if carry exists, [9,4], k = 1
+ */
+int* addToArrayForm(int* num, int numSize, int k, int* returnSize) {
+    int carry = 0;
+    int *resArr = malloc(numSize * sizeof(int));
+    int i = numSize - 1;
+    int m = 0;
+
+    while(carry || i >= 0 || k > 0){
+        int sum = carry;
+        if(i >= 0){
+            sum += num[i--];
+        }
+        if(k > 0){
+            sum += k % 10;
+            k = k/10; //80, 8
+        }
+        
+        carry = sum/10; 
+        if(m == numSize){ //1. when to extend array 
+            numSize++;
+            resArr = realloc(resArr, numSize * sizeof(int));
+        }
+
+        resArr[m++] = sum % 10;
+    }
+    
+    int l = 0;
+    int r = m - 1; //2. m tracks array length, not numSize
+
+    while(l < r){
+        int temp = resArr[l];
+        resArr[l] = resArr[r];
+        resArr[r] = temp;
+        l++;
+        r--;
+    }
+
+    *returnSize = m;
+    return resArr;
+}
