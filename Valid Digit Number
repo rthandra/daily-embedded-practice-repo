@@ -1,0 +1,43 @@
+/*
+
+edge case:
+n = 0 return 0
+111 x = 1  starts with 1 but middle value contains 1 - still false
+leading 0's ex: 10 x = 0 is true but fails
+
+1. need to find largest power of 10 that can fit in n
+2. check value from left to right:
+    if first value is equal to x: - maybe have flag so it doesnt do every for every index
+        return false
+    else{
+        check if its equal to x
+    }
+time complexity - o(logn)
+*/
+bool validDigit(int n, int x) {
+
+    int powerOf10 = 10000;
+
+    if(n == 0 && x == 0 ||n == 0 && x != 0 ){
+        return false;
+    }
+
+    //largest power of 10 that can fit in x
+    while((n / powerOf10) <= 0){ 
+        powerOf10 /= 10; 
+    }
+    //check if first digit is the same as x
+    int digit = n / powerOf10; //obtain digit left to right
+        if(digit == x){
+            return false;
+    }
+
+    while(powerOf10 > 1){
+        powerOf10 /= 10; //reduce the power
+        digit = (n / powerOf10) % 10; //obtain digit left to right without reducing n
+        if(digit == x){
+            return true;
+        }
+    }
+    return false;   
+}
