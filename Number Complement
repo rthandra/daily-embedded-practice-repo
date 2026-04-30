@@ -1,0 +1,13 @@
+int findComplement(int num) {
+  int width = 0;
+  int temp = num; //0101
+
+  while(temp > 0){ //y, y, y
+    width <<= 1;
+    width |= 1;
+    temp >>= 1; // 010, 1
+  }
+
+  num ^= width;
+  return num;
+}
