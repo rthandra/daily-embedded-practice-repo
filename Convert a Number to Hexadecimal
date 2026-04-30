@@ -1,0 +1,42 @@
+/*
+edge cases: 1. trailing zeroes
+2. unsigned numbers
+*/
+
+char* toHex(int num) {
+    char *s = malloc(32);
+    int k = 0;
+    unsigned int n = num;
+
+    for(int i = 31; i >=0 ;i = i - 4){ //0000 0000 0000....0001 1010
+        int res = 0;
+        
+        //for(int j = 0; j < 4; j++){
+           // res += (n & 1) * pow(2,j); 
+            res = n & 0xF;
+            n >>= 4;
+
+        if (res < 10){
+            s[k++] = res  + '0';
+        }
+        else if(res >= 10){
+           s[k++] = (res - 10) + 'a';
+        }
+        if(n <= 0){ //end of num
+            s[k] = '\0';
+            break;
+        }
+    }
+    s[k] = '\0';
+    //reverse string
+    int l = 0;
+    int r = k-1;
+    while(l < r){
+        char temp = s[l];
+        s[l] = s[r];
+        s[r] = temp;
+        l++;
+        r--;
+    }
+    return s;
+}
