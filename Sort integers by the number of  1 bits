@@ -1,0 +1,72 @@
+/*
+
+1. sort two numbers at once - bubble sort
+2. while sorting sort its bit count not the number itself:
+    swap the numbers
+    if bitcount equal: check its indexes and sort them based on it - O(n^2)
+*/
+/*
+int count_bits(int n){
+    int count = 0;
+    while(n>0){
+        n &= (n-1);
+        count++;
+    }
+    return count;
+}
+
+int* sortByBits(int* arr, int arrSize, int* returnSize) {
+
+    for(int i = 0; i < arrSize; i++){
+        for(int j = 1; j < arrSize; j++){
+
+            int bit1 = count_bits(arr[j - 1]);
+            int bit2 = count_bits(arr[j]);
+
+            if(bit2 < bit1){ 
+               int temp = arr[j-1];
+               arr[j-1] = arr[j];
+               arr[j] = temp;
+            }
+            else if (bit1 == bit2 && arr[j] < arr[j-1]){ //equal bits size
+               int temp = arr[j-1];
+               arr[j-1] = arr[j];
+               arr[j] = temp;
+            }   
+        }
+    }
+
+    *returnSize = arrSize;
+    return arr;
+}
+*/
+
+//quick sort - nlogn
+int count_bits(int n){
+    int count = 0;
+    while(n>0){
+        n &= (n-1);
+        count++;
+    }
+    return count;
+}
+
+int comp(const void* a, const void* b){ //void pointer
+
+     int bit1 = count_bits(*(int*)a);
+     int bit2 = count_bits(*(int*)b);
+
+     if(bit2 != bit1){ //random order, cannot use bit2 < bit1
+        return bit1 - bit2;
+     }
+
+    return *(int*)a - *(int*)b; //normal quick sort return
+}
+
+int* sortByBits(int* arr, int arrSize, int* returnSize) {
+
+    qsort(arr, arrSize, sizeof(int), &comp);
+
+    *returnSize = arrSize;
+    return arr;
+}
